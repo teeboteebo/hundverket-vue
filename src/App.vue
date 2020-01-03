@@ -1,32 +1,78 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view />
+    <header>
+      <div class="logo-holder">
+        <img class="logo-img" src="@/assets/logo.png" />
+        <img class="ebbe-img" src="@/assets/ebbe.jpg" />
+      </div>
+      <NavMenu />
+    </header>
+    <main>
+      <router-view />
+    </main>
+    <footer>Footer</footer>
   </div>
 </template>
+<script>
+import NavMenu from "@/components/NavMenu.vue";
+
+export default {
+  name: "app",
+  components: {
+    NavMenu
+  }
+};
+</script>
 
 <style lang="scss">
+* {
+  margin: 0;
+  padding: 0;
+}
 #app {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  --primary: #008a46;
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
+  header {
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    .logo-holder {
+      min-width: 300px;
+      margin: 0;
+      width: 300px;
+      flex-wrap: nowrap;
+      .logo-img {
+        width: 210px;
+        height: auto;
+        margin-right: 10px;
+      }
+      .ebbe-img {
+        width: 70px;
+        height: auto;
+        border-radius: 1000px;
+      }
     }
+    & > nav,
+    & > div {
+      display: inline-block;
+    }
+    nav {
+      align-self: flex-end;
+    }
+  }
+  main {
+    flex: 1;
   }
 }
 </style>
