@@ -1,12 +1,20 @@
 <template>
   <div id="app">
-    <header>
-      <div class="logo-holder">
-        <img class="logo-img" src="@/assets/logo.png" />
-        <img class="ebbe-img" src="@/assets/ebbe.jpg" />
-      </div>
-      <NavMenu />
-    </header>
+    <b-container>
+      <header>
+        <b-row>
+          <b-col>
+            <div class="logo-holder">
+              <img class="logo-img" src="@/assets/logo.png" />
+              <img class="ebbe-img" src="@/assets/ebbe.jpg" />
+            </div>
+          </b-col>
+          <b-col>
+            <NavMenu />
+          </b-col>
+        </b-row>
+      </header>
+    </b-container>
     <main>
       <router-view />
     </main>
@@ -43,6 +51,7 @@ export default {
   text-align: center;
   color: #2c3e50;
   header {
+    padding-top: 50px;
     width: 100%;
     margin: 0 auto;
     display: flex;
@@ -73,6 +82,10 @@ export default {
   }
   main {
     flex: 1;
+  }
+  footer {
+    color: #eee;
+    background-color: var(--primary);
   }
 }
 </style>

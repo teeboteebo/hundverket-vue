@@ -1,6 +1,6 @@
 <template>
   <nav class="navmenu">
-    <router-link v-for="link in links" :key="link.id" :to="link.to">{{link.name}}</router-link>
+    <router-link v-for="link in links" :key="link.id + 'ss'" :to="link.to">{{link.name}}</router-link>
   </nav>
 </template>
 
@@ -38,7 +38,7 @@ export default {
 
 <style lang="scss" scoped>
 .navmenu {
-  min-width: 500px;
+  width: 100%‡;
   text-align: right;
   a {
     font-size: 22px;
