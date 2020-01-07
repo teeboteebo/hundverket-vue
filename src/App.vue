@@ -30,28 +30,28 @@ export default {
 @import "node_modules/bootstrap/scss/functions";
 @import "node_modules/bootstrap/scss/variables";
 @import "node_modules/bootstrap/scss/mixins/_breakpoints";
-.no-gutters {
-  margin: 0;
-}
+
 * {
   margin: 0;
   padding: 0;
 }
 #app {
+  --primary: #008a46;
+  --text: #2c3e50;
   overflow: hidden;
   display: flex;
   min-height: 100vh;
   flex-direction: column;
   width: 100%;
   margin: 0 auto;
-  --primary: #008a46;
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: var(--text);
   main {
     flex: 1;
+    min-height: 800px;
   }
   footer {
     color: #fff;

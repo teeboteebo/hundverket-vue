@@ -1,5 +1,5 @@
 <template>
-  <b-navbar class="min-w-100 p-0 p-2" sticky toggleable="lg" type="dark" variant="primary">
+  <b-navbar class="navbar-menu p-0 p-2" sticky toggleable="lg" type="light" variant="white">
     <b-container>
       <b-row>
         <b-col cols="8" lg="5" class="text-left">
@@ -14,7 +14,7 @@
           <b-navbar-toggle
             class="text-primary border-white text-white"
             target="nav-collapse"
-            :style="{color: 'white'}"
+            :style="{color: 'var(--primary'}"
           ></b-navbar-toggle>
         </b-col>
         <b-col cols="0" lg="7">
@@ -89,12 +89,12 @@ header {
   padding-top: 50px;
   .logo-holder {
     width: 100%;
+    max-width: 400px;
     flex-wrap: nowrap;
     .logo-img {
       width: 70%;
       height: auto;
       margin-right: 10px;
-      filter: brightness(0) invert(1);
     }
     .ebbe-img {
       width: 20%;
@@ -112,11 +112,12 @@ header {
       display: inline-block;
       font-size: 22px;
       font-weight: bold;
-      color: #ccc;
+      color: var(--text);
       margin-left: 20px;
       text-decoration: none;
-      &.router-link-exact-active {
-        color: #fff;
+      &.router-link-exact-active, &:hover {
+        transition: .3s color;
+        color: var(--primary);
       }
     }
   }

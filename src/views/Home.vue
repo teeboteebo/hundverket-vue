@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <p>Välkommen till startsidan</p>
+    <img class="sally-img" src="@/assets/sally.jpg" alt="Hunden Sally" />
     <b-container>
       <b-row>
         <b-col>col1</b-col>
@@ -16,5 +16,15 @@
 export default {
   name: "home",
   components: {}
-}
+};
 </script>
+
+<style lang="scss" scoped>
+.home {
+  .sally-img {
+    width: 100%;
+    height: auto;
+    background-color: #6d962b;
+  }
+}
+</style>
