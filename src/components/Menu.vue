@@ -15,10 +15,10 @@
           <!-- !-- Overlay content -- -->
           <ul class="overlay-content">
             <li>
-              <span @click="linksInOverlay('/')" class="overlayLink">Hem</span>
+              <span @click="linksInOverlay('/')" class="overlayLink"><router-link to="/">Hem</router-link></span>
             </li>
             <li>
-              <span @click="linksInOverlay('/about')" class="overlayLink">Kontakta</span>
+              <span @click="linksInOverlay('/om')" class="overlayLink"><router-link to="/om">Om</router-link></span>
             </li>
           </ul>
         </div>
