@@ -1,48 +1,48 @@
 <template>
   <div id="app">
-    <b-container>
-      <header>
-        <b-row>
-          <b-col>
-            <div class="logo-holder">
-              <img class="logo-img" src="@/assets/logo.png" />
-              <img class="ebbe-img" src="@/assets/ebbe.jpg" />
-            </div>
-          </b-col>
-          <b-col>
-            <NavMenu />
-          </b-col>
-        </b-row>
-      </header>
-    </b-container>
+    <header>
+      <Header />
+    </header>
     <main>
-      <router-view />
+      <b-container fluid class="p-0">
+        <router-view />
+      </b-container>
     </main>
-    <footer>Footer</footer>
+    <footer>
+      <Footer />
+    </footer>
   </div>
 </template>
 <script>
-import NavMenu from "@/components/NavMenu.vue";
+import Header from "@/components/Header.vue";
+import Footer from "@/components/Footer.vue";
 
 export default {
   name: "app",
   components: {
-    NavMenu
+    Header,
+    Footer
   }
 };
 </script>
 
 <style lang="scss">
+@import "node_modules/bootstrap/scss/functions";
+@import "node_modules/bootstrap/scss/variables";
+@import "node_modules/bootstrap/scss/mixins/_breakpoints";
+.no-gutters {
+  margin: 0;
+}
 * {
   margin: 0;
   padding: 0;
 }
 #app {
+  overflow: hidden;
   display: flex;
   min-height: 100vh;
   flex-direction: column;
   width: 100%;
-  max-width: 1200px;
   margin: 0 auto;
   --primary: #008a46;
   font-family: "Avenir", Helvetica, Arial, sans-serif;
@@ -50,41 +50,11 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  header {
-    padding-top: 50px;
-    width: 100%;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    .logo-holder {
-      min-width: 300px;
-      margin: 0;
-      width: 300px;
-      flex-wrap: nowrap;
-      .logo-img {
-        width: 210px;
-        height: auto;
-        margin-right: 10px;
-      }
-      .ebbe-img {
-        width: 70px;
-        height: auto;
-        border-radius: 1000px;
-      }
-    }
-    & > nav,
-    & > div {
-      display: inline-block;
-    }
-    nav {
-      align-self: flex-end;
-    }
-  }
   main {
     flex: 1;
   }
   footer {
-    color: #eee;
+    color: #fff;
     background-color: var(--primary);
   }
 }

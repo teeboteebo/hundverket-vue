@@ -5,11 +5,10 @@ import router from "./router"
 import store from "./store"
 
 //Import of bootstrap
+import './scss/bootstrap.scss'
 import BootstrapVue from 'bootstrap-vue'
 
-import 'bootstrap'; 
-import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap-vue/dist/bootstrap-vue.css'
+
 Vue.config.productionTip = false;
 Vue.use(BootstrapVue)
 new Vue({
