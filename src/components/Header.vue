@@ -4,8 +4,10 @@
       <b-row>
         <b-col cols="8" lg="5" class="text-left">
           <div class="logo-holder d-inline-block p-2">
-            <img class="logo-img" src="@/assets/logo.png" />
-            <img class="ebbe-img d-none d-lg-inline-block" src="@/assets/ebbe.jpg" />
+            <router-link to="/">
+              <img class="logo-img" src="@/assets/logo.png" />
+              <img class="ebbe-img d-none d-lg-inline-block" src="@/assets/ebbe.jpg" />
+            </router-link>
           </div>
         </b-col>
         <b-col cols="4" lg="0" class="d-lg-none text-right align-self-center pl-0">
