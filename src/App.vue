@@ -37,7 +37,7 @@ export default {
 }
 #app {
   --primary: #008a46;
-  --text: #2c3e50;
+  --text: #282f36;
   overflow: hidden;
   display: flex;
   min-height: 100vh;

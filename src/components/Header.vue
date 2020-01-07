@@ -1,23 +1,24 @@
 <template>
   <b-navbar class="navbar-menu p-0 p-2" sticky toggleable="lg" type="light" variant="white">
     <b-container>
-      <b-row>
+      <b-row class="w-100 no-gutters">
         <b-col cols="8" lg="5" class="text-left">
           <div class="logo-holder d-inline-block p-2">
             <router-link to="/">
               <img class="logo-img" src="@/assets/logo.png" />
-              <img class="ebbe-img d-none d-lg-inline-block" src="@/assets/ebbe.jpg" />
+              <img class="ebbe-img" src="@/assets/ebbe.jpg" />
             </router-link>
           </div>
         </b-col>
-        <b-col cols="4" lg="0" class="d-lg-none text-right align-self-center pl-0">
-          <b-navbar-toggle
+        <b-col cols="4" lg="7" class="text-right align-self-center align-items-right">
+          <Menu />
+          <!-- <b-navbar-toggle
             class="text-primary border-white text-white"
             target="nav-collapse"
             :style="{color: 'var(--primary'}"
-          ></b-navbar-toggle>
+          ></b-navbar-toggle>-->
         </b-col>
-        <b-col cols="0" lg="7">
+        <!-- <b-col cols="0" lg="7">
           <b-collapse id="nav-collapse" is-nav class="py-3 py-lg-0">
             <b-navbar-nav>
               <router-link
@@ -28,7 +29,7 @@
               >{{link.name}}</router-link>
             </b-navbar-nav>
           </b-collapse>
-        </b-col>
+        </b-col>-->
       </b-row>
     </b-container>
   </b-navbar>
@@ -43,8 +44,10 @@
 </template>
 
 <script>
+import Menu from "./Menu";
 export default {
   name: "header-component",
+  components: { Menu },
   data: () => {
     return {
       links: [
@@ -115,8 +118,9 @@ header {
       color: var(--text);
       margin-left: 20px;
       text-decoration: none;
-      &.router-link-exact-active, &:hover {
-        transition: .3s color;
+      &.router-link-exact-active,
+      &:hover {
+        transition: 0.3s color;
         color: var(--primary);
       }
     }
