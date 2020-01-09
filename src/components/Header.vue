@@ -1,17 +1,15 @@
 <template>
-  <b-navbar class="navbar-menu p-0 p-2" sticky toggleable="lg" type="light" variant="white">
-    <b-container>
+    <b-container class="py-2">
       <b-row class="w-100 no-gutters">
-        <b-col cols="8" lg="5" class="text-left">
-          <div class="logo-holder d-inline-block p-2">
+        <b-col cols="8" class="text-left">
+          <div class="logo-holder d-inline-block">
             <router-link to="/">
-              <img class="logo-img" src="@/assets/logo.png" />
-              <img class="ebbe-img" src="@/assets/ebbe.jpg" />
+              <img class="logo-img" src="@/assets/logo-dog.png" />
             </router-link>
           </div>
         </b-col>
-        <b-col cols="4" lg="7" class="text-right align-self-center align-items-right">
-          <Menu :links="links"/>
+        <b-col cols="4" class="d-flex align-items-center">
+          <Menu :links="links" />
           <!-- <b-navbar-toggle
             class="text-primary border-white text-white"
             target="nav-collapse"
@@ -32,7 +30,6 @@
         </b-col>-->
       </b-row>
     </b-container>
-  </b-navbar>
   <!-- <nav class="nav text-right">
             <router-link
               v-for="link in links"
@@ -65,16 +62,6 @@ export default {
           to: "/hundarna",
           name: "Hundarna",
           id: 3,
-          sublinks: [
-            {
-              to: "/hundarna/ebbe",
-              name: "Ebbe"
-            },
-            {
-              to: "/hundarna/sally",
-              name: "Sally"
-            }
-          ]
         },
         {
           to: "/kontakt",
@@ -89,41 +76,18 @@ export default {
 
 <style lang="scss" scoped>
 header {
-  padding-top: 50px;
   .logo-holder {
     width: 100%;
-    max-width: 350px;
+    max-width: 295px;
     flex-wrap: nowrap;
     .logo-img {
-      width: 70%;
+      width: 100%;
       height: auto;
-      margin-right: 10px;
-    }
-    .ebbe-img {
-      width: 23.5%;
-      height: auto;
-      border-radius: 1000px;
     }
   }
   & > nav,
   & > div {
     display: inline-block;
-  }
-  nav {
-    width: 100%;
-    .nav-item {
-      display: inline-block;
-      font-size: 22px;
-      font-weight: bold;
-      color: var(--text);
-      margin-left: 20px;
-      text-decoration: none;
-      &.router-link-exact-active,
-      &:hover {
-        transition: 0.3s color;
-        color: var(--primary);
-      }
-    }
   }
 }
 </style>

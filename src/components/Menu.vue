@@ -1,27 +1,23 @@
 <template>
-  <div class="menu">
-    <nav id="navigation" class>
-      <!-- !-- Hamburger--- -->
-      <div class="navbar-header">
-        <div
-          class="hamburger"
-          :class="toggle ? 'open' : ''"
-          ref="animateHamburger"
-          @click="navbarToggles"
-        >
-          <span class="strips"></span>
-        </div>
-        <div ref="myOverlay" class="overlay">
-          <!-- !-- Overlay content -- -->
-          <ul class="overlay-content">
-            <li v-for="link in links" :key="link.id">
-              <span @click="linksInOverlay(link.to)" class="overlayLink">{{link.name}}</span>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-  </div>
+  <nav id="navigation">
+    <!-- !-- Hamburger--- -->
+    <div
+      class="hamburger"
+      :class="toggle ? 'open' : ''"
+      ref="animateHamburger"
+      @click="navbarToggles"
+    >
+      <span class="strips"></span>
+    </div>
+    <div ref="myOverlay" class="overlay">
+      <!-- !-- Overlay content -- -->
+      <ul class="overlay-content">
+        <li v-for="link in links" :key="link.id">
+          <span @click="linksInOverlay(link.to)" class="overlayLink">{{link.name}}</span>
+        </li>
+      </ul>
+    </div>
+  </nav>
 </template>
 
 <script>
@@ -37,7 +33,10 @@ export default {
   },
   methods: {
     linksInOverlay(route) {
-      this.$router.push(route)
+      if (route !== this.$router.history.current.path){
+        this.$router.push(route);
+      }
+      window.scrollTo(0,0);
       this.navbarToggles();
     },
     navbarToggles() {
@@ -61,8 +60,11 @@ export default {
 
 <style lang="scss" scoped>
 #navigation {
-  text-align: right;
   z-index: 10000;
+  height: 35px;
+  position: absolute;
+  right: 0;
+  display: inline-block;
 }
 /****** Hamburger ******/
 .hamburger {

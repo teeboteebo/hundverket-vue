@@ -1,12 +1,10 @@
 <template>
   <div id="app">
-    <header>
+    <header class="align-items-center d-flex">
       <Header />
     </header>
     <main>
-      <b-container fluid class="p-0">
-        <router-view />
-      </b-container>
+      <router-view />
     </main>
     <footer>
       <Footer />
@@ -47,14 +45,39 @@ export default {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: var(--text);
+
+  header {
+    display: flex;
+    align-items: center;
+    height: 90px;
+    @include media-breakpoint-down(md) {
+      height: 63px;
+    }
+    position: fixed;
+    width: 100%;
+    // height: 100px;
+    background-color: #fff;
+    -webkit-box-shadow: 0px -21px 31px 10px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px -21px 31px 10px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px -21px 31px 10px rgba(0, 0, 0, 0.75);
+    z-index: 1000;
+  }
   main {
     flex: 1;
+    margin-top: 90px;
+    @include media-breakpoint-down(md) {
+      margin-top: 63px;
+    }
+    & div.wrapper {
+      padding-top: 2rem;
+      padding-bottom: 2rem;
+    }
     min-height: 800px;
-    -webkit-box-shadow: inset 0px 13px 19px -20px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: inset 0px 13px 19px -20px rgba(0, 0, 0, 0.75);
-    box-shadow: inset 0px 13px 19px -20px rgba(0, 0, 0, 0.75);
+    // -webkit-box-shadow: inset 0px 13px 19px -20px rgba(0, 0, 0, 0.75);
+    // -moz-box-shadow: inset 0px 13px 19px -20px rgba(0, 0, 0, 0.75);
+    // box-shadow: inset 0px 13px 19px -20px rgba(0, 0, 0, 0.75);
+
     background-color: #eee;
   }
   footer {

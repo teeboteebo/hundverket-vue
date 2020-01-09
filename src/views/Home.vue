@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <img class="sally-img" src="@/assets/sally.jpg" alt="Hunden Sally" />
-    <b-container>
+    <b-container class="wrapper">
       <b-row>
         <b-col>col1</b-col>
       </b-row>
