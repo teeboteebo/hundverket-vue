@@ -1,8 +1,9 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
-    <h2>This is an about page</h2>
-  </div>
+  <b-container class="about">
+    <b-row>
+      <b-col>This is the about page</b-col>
+    </b-row>
+  </b-container>
 </template>
 
 <script>

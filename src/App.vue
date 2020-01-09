@@ -52,6 +52,10 @@ export default {
   main {
     flex: 1;
     min-height: 800px;
+    -webkit-box-shadow: inset 0px 13px 19px -20px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: inset 0px 13px 19px -20px rgba(0, 0, 0, 0.75);
+    box-shadow: inset 0px 13px 19px -20px rgba(0, 0, 0, 0.75);
+    background-color: #eee;
   }
   footer {
     color: #fff;
