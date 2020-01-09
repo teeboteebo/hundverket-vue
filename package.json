@@ -1,5 +1,5 @@
 {
-  "name": "temp",
+  "name": "hundverket-i-skane",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -11,6 +11,7 @@
     "bootstrap": "^4.4.1",
     "bootstrap-vue": "^2.1.0",
     "core-js": "^3.4.4",
+    "express": "^4.17.1",
     "jquery": "^3.4.1",
     "popper.js": "^1.16.0",
     "register-service-worker": "^1.6.2",
