@@ -36,9 +36,8 @@ export default {
     };
   },
   methods: {
-    linksInOverlay(s) {
-      console.log(s)
-      this.$router.push(s)
+    linksInOverlay(route) {
+      this.$router.push(route)
       this.navbarToggles();
     },
     navbarToggles() {
