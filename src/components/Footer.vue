@@ -41,8 +41,8 @@
           </router-link>
         </section>
       </div>
-      <p class="copy-claim">Denna sida lagrar ingen information.</p>
     </div>
+    <p class="copy-claim">Denna sida lagrar ingen information.</p>
   </div>
 </template>
 <script >
@@ -64,17 +64,16 @@ export default {
 </script>
 <style lang="scss" scoped>
 .footer {
-  height: 300px;
-  background: var(--primary);
+  min-height: 300px;
   color: #fff;
   font-size: 1rem;
+  position: relative;
   div {
     width: 400px;
-    max-width: 90%;
-    height: 100%;
+    max-width: 100%;
     margin: 0 auto;
-    position: relative;
     div {
+      padding: 0 1rem;
       display: flex;
       padding-top: 50px;
       flex-direction: row;
@@ -93,6 +92,10 @@ export default {
         a {
           text-decoration: none;
           color: #fff;
+          &:hover,
+          &:active {
+            font-weight: bold;
+          }
         }
       }
       section {
@@ -112,15 +115,15 @@ export default {
         }
       }
     }
-    .copy-claim {
-      font-size: 0.8rem;
-      margin: 0 auto;
-      position: absolute;
-      bottom: 0.4rem;
-      display: block;
-      width: 100%;
-      text-align: center;
-    }
+  }
+  .copy-claim {
+    font-size: 0.8rem;
+    margin: 0 auto;
+    position: absolute;
+    bottom: 10px;
+    display: block;
+    width: 100%;
+    text-align: center;
   }
 }
 </style>
