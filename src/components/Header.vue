@@ -11,7 +11,7 @@
           </div>
         </b-col>
         <b-col cols="4" lg="7" class="text-right align-self-center align-items-right">
-          <Menu />
+          <Menu :links="links"/>
           <!-- <b-navbar-toggle
             class="text-primary border-white text-white"
             target="nav-collapse"
@@ -92,7 +92,7 @@ header {
   padding-top: 50px;
   .logo-holder {
     width: 100%;
-    max-width: 400px;
+    max-width: 350px;
     flex-wrap: nowrap;
     .logo-img {
       width: 70%;
@@ -100,7 +100,7 @@ header {
       margin-right: 10px;
     }
     .ebbe-img {
-      width: 20%;
+      width: 23.5%;
       height: auto;
       border-radius: 1000px;
     }

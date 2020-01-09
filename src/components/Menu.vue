@@ -14,11 +14,8 @@
         <div ref="myOverlay" class="overlay">
           <!-- !-- Overlay content -- -->
           <ul class="overlay-content">
-            <li>
-              <span @click="linksInOverlay('/')" class="overlayLink"><router-link to="/">Hem</router-link></span>
-            </li>
-            <li>
-              <span @click="linksInOverlay('/om')" class="overlayLink"><router-link to="/om">Om</router-link></span>
+            <li v-for="link in links" :key="link.id">
+              <span @click="linksInOverlay(link.to)" class="overlayLink">{{link.name}}</span>
             </li>
           </ul>
         </div>
@@ -29,8 +26,9 @@
 
 <script>
 export default {
-  name: "menu",
+  name: "menuContent",
   components: {},
+  props: ["links"],
   data() {
     return {
       toggle: false,
@@ -38,7 +36,9 @@ export default {
     };
   },
   methods: {
-    linksInOverlay() {
+    linksInOverlay(s) {
+      console.log(s)
+      this.$router.push(s)
       this.navbarToggles();
     },
     navbarToggles() {
