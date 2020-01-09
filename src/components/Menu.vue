@@ -1,16 +1,18 @@
 <template>
   <nav id="navigation">
-    <!-- !-- Hamburger--- -->
+    <!-- Hamburger -->
     <div
       class="hamburger"
       :class="toggle ? 'open' : ''"
       ref="animateHamburger"
       @click="navbarToggles"
+      @keyup.esc="closeMenu"
+      tabindex="0"
     >
       <span class="strips"></span>
     </div>
     <div ref="myOverlay" class="overlay">
-      <!-- !-- Overlay content -- -->
+      <!-- Overlay content -->
       <ul class="overlay-content">
         <li v-for="link in links" :key="link.id">
           <span @click="linksInOverlay(link.to)" class="overlayLink">{{link.name}}</span>
@@ -27,27 +29,30 @@ export default {
   props: ["links"],
   data() {
     return {
-      toggle: false,
-      hamburger: false
+      toggle: false
     };
   },
   methods: {
     linksInOverlay(route) {
-      if (route !== this.$router.history.current.path){
+      // Prevent route changing if same route is clicked, only scroll to top
+      if (route !== this.$router.history.current.path) {
         this.$router.push(route);
       }
-      window.scrollTo(0,0);
+      window.scrollTo(0, 0);
+      this.navbarToggles();
+    },
+    closeMenu() {
+      this.toggle = true;
       this.navbarToggles();
     },
     navbarToggles() {
       this.toggle = !this.toggle;
-      this.hamburger = !this.hamburger;
-      if (this.toggle && this.hamburger) {
+      if (this.toggle) {
         const hamburgerArrow = this.$refs.animateHamburger;
         hamburgerArrow.classList.add("open");
         const toggle = this.$refs.myOverlay;
         toggle.style.top = "0";
-      } else if (!this.toggle && !this.hamburger) {
+      } else if (!this.toggle) {
         const hamburgerStrips = this.$refs.animateHamburger;
         hamburgerStrips.classList.remove("open");
         const closeNav = this.$refs.myOverlay;
@@ -76,6 +81,7 @@ export default {
   position: relative;
   z-index: 10000 !important;
   cursor: pointer;
+  outline: none;
   @media screen and (max-width: 375px) {
     padding: 0 !important;
   }
@@ -92,7 +98,6 @@ span.strips {
 }
 div.hamburger.open span.strips {
   background-color: #fff;
-
   -webkit-transform: rotate(270deg);
   -ms-transfrom: rotate(270deg);
   transform: rotate(270deg);
@@ -168,7 +173,7 @@ div.hamburger.open span.strips::after {
   padding: 8px;
   text-decoration: none;
   font-size: 36px;
-  color: #818181;
+  color: #aaa;
   display: block; /* Display block instead of inline */
   transition: 0.3s; /* Transition effects on hover (color) */
   &:hover {
