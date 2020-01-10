@@ -43,10 +43,12 @@ export default {
         font-weight: bold;
         &.nav-dropdown {
           position: relative;
-          & > a::after{
-            content: " ˅";
+          & > a::after {
+            content: " v";
+            margin-bottom: 5px;
             font-size: 16px;
             color: var(--text);
+            text-decoration: none;
           }
           ul.dd-menu {
             display: none;
@@ -71,6 +73,12 @@ export default {
           }
         }
         &.nav-dropdown:hover {
+          & > a::after {
+            content: " ʌ";
+            font-size: 16px;
+            color: var(--text);
+            text-decoration: none;
+          }
           ul {
             display: inline-block;
           }
@@ -82,7 +90,7 @@ export default {
   .r-link {
     color: var(--text);
     text-decoration: none;
-    transition: 0.4s color;
+    transition: 0.3s color;
     &:hover {
       color: var(--primary);
     }
