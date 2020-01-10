@@ -1,5 +1,5 @@
 <template>
-  <b-container class="about">
+  <b-container class="about wrapper">
     <b-row>
       <b-col>This is the about page</b-col>
     </b-row>
@@ -12,10 +12,5 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-h1 {
-  color: red;
-  h2 {
-    color: blue;
-  }
-}
+
 </style>

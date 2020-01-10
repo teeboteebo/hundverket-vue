@@ -1,14 +1,14 @@
 <template>
-  <b-container class="gallery wrapper">
+  <b-container class="sally wrapper">
     <b-row>
-      <b-col>This is the gallery page</b-col>
+      <b-col>This is the sally page</b-col>
     </b-row>
   </b-container>
 </template>
 
 <script>
 export default {
-  name: "gallery"
+  name: "sally"
 };
 </script>
 <style lang="scss" scoped>

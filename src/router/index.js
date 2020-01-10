@@ -4,6 +4,8 @@ import Home from "../views/Home.vue"
 import About from "../views/About.vue"
 import Gallery from "../views/Gallery.vue"
 import Dogs from "../views/Dogs.vue"
+import Ebbe from "../views/Ebbe.vue"
+import Sally from "../views/Sally.vue"
 import Admin from "../views/Admin.vue"
 
 Vue.use(VueRouter)
@@ -23,6 +25,16 @@ const routes = [
     path: "/hundarna",
     name: "hundarna",
     component: Dogs
+  },
+  {
+    path: "/hundarna/ebbe",
+    name: "ebbe",
+    component: Ebbe
+  },
+  {
+    path: "/hundarna/sally",
+    name: "sally",
+    component: Sally
   },
   {
     path: "/om",
