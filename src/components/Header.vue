@@ -1,22 +1,25 @@
 <template>
-    <b-container class="py-2">
-      <b-row class="w-100 no-gutters">
-        <b-col cols="8" class="text-left">
-          <div class="logo-holder d-inline-block">
-            <router-link to="/">
-              <img class="logo-img" src="@/assets/logo-dog.png" />
-            </router-link>
-          </div>
-        </b-col>
-        <b-col cols="4" class="d-flex align-items-center">
-          <Menu :links="links" />
-          <!-- <b-navbar-toggle
+  <b-container class="py-2">
+    <b-row class="w-100 no-gutters">
+      <b-col cols="8" lg="4" class="text-left">
+        <div class="logo-holder d-inline-block">
+          <router-link to="/">
+            <img class="logo-img" src="@/assets/logo-dog.png" />
+          </router-link>
+        </div>
+      </b-col>
+      <b-col cols="4" lg="8" class="d-none d-lg-flex align-items-end">
+        <Menu :links="links" />
+      </b-col>
+      <b-col cols="4" class="d-flex d-lg-none align-items-center">
+        <Hamburger :links="links" />
+        <!-- <b-navbar-toggle
             class="text-primary border-white text-white"
             target="nav-collapse"
             :style="{color: 'var(--primary'}"
-          ></b-navbar-toggle>-->
-        </b-col>
-        <!-- <b-col cols="0" lg="7">
+        ></b-navbar-toggle>-->
+      </b-col>
+      <!-- <b-col cols="0" lg="7">
           <b-collapse id="nav-collapse" is-nav class="py-3 py-lg-0">
             <b-navbar-nav>
               <router-link
@@ -27,9 +30,9 @@
               >{{link.name}}</router-link>
             </b-navbar-nav>
           </b-collapse>
-        </b-col>-->
-      </b-row>
-    </b-container>
+      </b-col>-->
+    </b-row>
+  </b-container>
   <!-- <nav class="nav text-right">
             <router-link
               v-for="link in links"
@@ -42,9 +45,10 @@
 
 <script>
 import Menu from "./Menu";
+import Hamburger from "./Hamburger";
 export default {
-  name: "header-component",
-  components: { Menu },
+  name: "headerContent",
+  components: { Hamburger, Menu },
   data: () => {
     return {
       links: [
@@ -62,6 +66,18 @@ export default {
           to: "/hundarna",
           name: "Hundarna",
           id: 3,
+          subLinks: [
+            {
+              to: "/hundarna/ebbe",
+              name: "Ebbe",
+              id: 3.1,
+            },
+            {
+              to: "/hundarna/sally",
+              name: "Sally",
+              id: 3.2,
+            }
+          ]
         },
         {
           to: "/kontakt",
@@ -75,10 +91,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "@/scss/bootstrap";
+
 header {
   .logo-holder {
     width: 100%;
     max-width: 295px;
+    @include media-breakpoint-down(md) {
+      max-width: 200px;
+    }
     flex-wrap: nowrap;
     .logo-img {
       width: 100%;
