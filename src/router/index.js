@@ -2,6 +2,9 @@ import Vue from "vue"
 import VueRouter from "vue-router"
 import Home from "../views/Home.vue"
 import About from "../views/About.vue"
+import Gallery from "../views/Gallery.vue"
+import Dogs from "../views/Dogs.vue"
+import Admin from "../views/Admin.vue"
 
 Vue.use(VueRouter)
 
@@ -14,12 +17,12 @@ const routes = [
   {
     path: "/galleri",
     name: "galleri",
-    component: About,
+    component: Gallery,
   },
   {
     path: "/hundarna",
     name: "hundarna",
-    component: Home
+    component: Dogs
   },
   {
     path: "/om",
@@ -29,7 +32,7 @@ const routes = [
   {
     path: "/admin",
     name: "admin",
-    component: About,
+    component: Admin,
   }  
 ]
 
