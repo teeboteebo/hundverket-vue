@@ -94,7 +94,7 @@ export default {
           color: #fff;
           &:hover,
           &:active {
-            transition: 0.2s color;
+            transition: 0.15s color;
             color: var(--text);
           }
         }

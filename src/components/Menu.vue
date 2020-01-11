@@ -81,7 +81,7 @@ export default {
           // }
           & > a::after {
             content: "ʌ";
-            font-size: 12px;
+            font-size: 11px;
             color: var(--text);
             position: absolute;
             top: 6px;
@@ -100,7 +100,7 @@ export default {
   .r-link {
     color: var(--text);
     text-decoration: none;
-    transition: 0.3s color;
+    transition: 0.15s color;
     &:hover {
       color: var(--primary);
     }
