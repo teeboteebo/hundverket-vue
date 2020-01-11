@@ -100,7 +100,7 @@ export default {
   .r-link {
     color: var(--text);
     text-decoration: none;
-    transition: 0.3s color;
+    transition: 0.15s color;
     &:hover {
       color: var(--primary);
     }
