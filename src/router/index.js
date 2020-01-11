@@ -37,8 +37,8 @@ const routes = [
     component: Sally
   },
   {
-    path: "/om",
-    name: "om mig",
+    path: "/om-oss",
+    name: "om oss",
     component: About,
   },
   {

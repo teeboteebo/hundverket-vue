@@ -84,7 +84,7 @@ export default {
             font-size: 11px;
             color: var(--text);
             position: absolute;
-            top: 6px;
+            top: 7px;
             right: -12px;
 
             text-decoration: none;
