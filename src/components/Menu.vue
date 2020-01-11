@@ -23,30 +23,32 @@ export default {
 </script>
 <style lang="scss" scoped>
 .menu-content {
+  position: relative;
   width: 100%;
   text-align: right;
   ul {
-    float: right;
-    padding-left: 30px;
     margin: 0;
     display: flex;
     max-width: 600px;
     width: 100%;
-    justify-content: flex-end;
+    flex-direction: row;
+    justify-content: space-evenly;
     li {
       margin-left: 40px;
       text-align: right;
       display: flex;
-      align-items: end;
+      align-items: flex-end;
       & > .nav-item {
-        font-size: 1.5rem;
+        font-size: 1.2rem;
         font-weight: bold;
         &.nav-dropdown {
           position: relative;
           & > a::after {
-            content: " v";
-            margin-bottom: 5px;
-            font-size: 16px;
+            content: "v";
+            font-size: 12px;
+            position: absolute;
+            top: 6px;
+            right: -12px;
             color: var(--text);
             text-decoration: none;
           }
@@ -55,7 +57,8 @@ export default {
             position: absolute;
             padding: 5px 10px;
             left: -1px;
-            top: 2rem;
+            top: 1.6rem;
+            font-weight: normal;
             background-color: white;
             border-radius: 4px;
             border: 1px solid rgba(0, 0, 0, 0.1);
@@ -64,7 +67,7 @@ export default {
               width: 100% !important;
               margin: 0;
               a {
-                font-size: 1.2rem;
+                font-size: 1rem;
               }
               &:not(:first-child) {
                 border-top: 1px solid rgba(0, 0, 0, 0.1);
@@ -73,10 +76,17 @@ export default {
           }
         }
         &.nav-dropdown:hover {
+          // & > a {
+          //   position: relative;
+          // }
           & > a::after {
-            content: " ʌ";
-            font-size: 16px;
+            content: "ʌ";
+            font-size: 12px;
             color: var(--text);
+            position: absolute;
+            top: 6px;
+            right: -12px;
+
             text-decoration: none;
           }
           ul {
@@ -97,7 +107,7 @@ export default {
   }
   .router-link-exact-active {
     color: var(--primary);
-    text-decoration: underline;
+    text-decoration: none;
   }
 }
 </style>

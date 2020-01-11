@@ -94,7 +94,8 @@ export default {
           color: #fff;
           &:hover,
           &:active {
-            font-weight: bold;
+            transition: 0.2s color;
+            color: var(--text);
           }
         }
       }

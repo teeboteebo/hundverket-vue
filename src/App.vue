@@ -42,21 +42,18 @@ export default {
   flex-direction: column;
   width: 100%;
   margin: 0 auto;
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: var(--text);
 
   header {
+    font-family: "Source Sans Pro", sans-serif;
     display: flex;
     align-items: center;
-    height: 90px;
-    @include media-breakpoint-down(md) {
-      height: 63px;
-    }
+    height: 70px;
     position: fixed;
     width: 100%;
-    // height: 100px;
     background-color: #fff;
     -webkit-box-shadow: 0px -21px 31px 10px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: 0px -21px 31px 10px rgba(0, 0, 0, 0.75);
@@ -65,19 +62,13 @@ export default {
   }
   main {
     flex: 1;
-    margin-top: 90px;
-    @include media-breakpoint-down(md) {
-      margin-top: 63px;
+    margin-top: 70px;
+    .wrapper {
+      padding-top: 3rem;
+      padding-bottom: 3rem;
+      background-color: #fff;
+      min-height: 800px;
     }
-    & div.wrapper {
-      padding-top: 2rem;
-      padding-bottom: 2rem;
-    }
-    min-height: 800px;
-    // -webkit-box-shadow: inset 0px 13px 19px -20px rgba(0, 0, 0, 0.75);
-    // -moz-box-shadow: inset 0px 13px 19px -20px rgba(0, 0, 0, 0.75);
-    // box-shadow: inset 0px 13px 19px -20px rgba(0, 0, 0, 0.75);
-
     background-color: #eee;
   }
   footer {

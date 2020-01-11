@@ -1,5 +1,5 @@
 <template>
-  <b-container class="py-2">
+  <b-container class="p-md-0">
     <b-row class="w-100 no-gutters">
       <b-col cols="8" lg="4" class="text-left">
         <div class="logo-holder d-inline-block">
@@ -8,7 +8,7 @@
           </router-link>
         </div>
       </b-col>
-      <b-col cols="4" lg="8" class="d-none d-lg-flex align-items-end">
+      <b-col cols="4" lg="8" class="d-none d-lg-flex align-items-center">
         <Menu :links="links" />
       </b-col>
       <b-col cols="4" class="d-flex d-lg-none align-items-center">
@@ -70,12 +70,12 @@ export default {
             {
               to: "/hundarna/ebbe",
               name: "Ebbe",
-              id: 3.1,
+              id: 3.1
             },
             {
               to: "/hundarna/sally",
               name: "Sally",
-              id: 3.2,
+              id: 3.2
             }
           ]
         },
@@ -83,6 +83,11 @@ export default {
           to: "/kontakt",
           name: "Kontakt",
           id: 4
+        },
+        {
+          to: "/om-oss",
+          name: "Om oss",
+          id: 5
         }
       ]
     };
@@ -96,7 +101,7 @@ export default {
 header {
   .logo-holder {
     width: 100%;
-    max-width: 295px;
+    max-width: 200px;
     @include media-breakpoint-down(md) {
       max-width: 200px;
     }
