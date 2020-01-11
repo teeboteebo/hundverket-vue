@@ -171,7 +171,7 @@ div.hamburger.open span.strips::after {
 /* Position the content inside the overlay */
 .overlay-content {
   position: relative;
-  top: 20%; /* 20% from the top */
+  top: 5%; /* 20% from the top */
   max-width: 200px;
   text-align: left; /* Centered text/links */
   margin: 30px auto 0; /* 30px top margin to avoid conflict with the close button on smaller screens */
