@@ -63,11 +63,12 @@ export default {
   main {
     flex: 1;
     margin-top: 70px;
+    display: flex;
     .wrapper {
+      flex:1;
       padding-top: 3rem;
       padding-bottom: 3rem;
       background-color: #fff;
-      min-height: 800px;
     }
     background-color: #eee;
   }
