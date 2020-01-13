@@ -2,17 +2,52 @@
   <b-container class="wrapper">
     <div v-if="state.loggedIn" class="admin-page">
       <h3>Kontrollpanel</h3>
-      <p>Inloggad som: {{this.state.loggedIn.email}}</p>
+      <p>Inloggad som: {{state.loggedIn.email}}</p>
       <button @click="logout" small class="btn btn-danger mb-5">Logga ut</button>
       <b-row>
         <b-col cols="12" lg="6">
           <h4>Inlägg</h4>
-          <button class="btn btn-info">
+          <button class="btn btn-info mb-4">
             Skapa nytt inlägg
             <PlusIcon size="14" />
           </button>
+          <table>
+            <tr>
+              <th>Titel</th>
+              <th class="text-right">Publicerad</th>
+            </tr>
+            <tr class="article-preview">
+              <td>Läsning i skolan</td>
+              <td class="text-right">
+                <input type="checkbox" />
+              </td>
+            </tr>
+            <tr class="article-preview">
+              <td>Sally utbildning</td>
+              <td class="text-right">
+                <input type="checkbox" checked />
+              </td>
+            </tr>
+            <tr class="article-preview">
+              <td>Nya sidan</td>
+              <td class="text-right">
+                <input type="checkbox" checked />
+              </td>
+            </tr>
+          </table>
+          <div class="pagination">
+            <div>
+              <span>&lt;</span>
+              <span class="font-weight-bold">1</span>
+              <span>2</span>
+              <span>3</span>
+              <span>4</span>
+              <span>5</span>
+              <span>&gt;</span>
+            </div>
+          </div>
         </b-col>
-        <b-col cols="12" lg="6">
+        <b-col cols="12" lg="6" class="mt-4 mt-lg-0">
           <h4>Hundarna</h4>
           <button class="btn btn-info">
             Lägg till ny hund
@@ -126,6 +161,38 @@ export default {
     text-align: center;
   }
   .admin-page {
+    table {
+      padding: 100px;
+      width: 100%;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      .article-preview {
+        height: 50px;
+        &:hover {
+          cursor: pointer;
+          background-color: rgba(0, 0, 0, 0.1);
+        }
+        &:not(:first-child) {
+          border-top: 1px solid rgba(0, 0, 0, 0.1);
+        }
+      }
+    }
+    .pagination {
+      margin: 1rem auto;
+      display: flex;
+      div {
+        text-align: center;
+        flex: 1;
+        display: inline-block;
+        & > * {
+          padding: 0.5rem;
+          border: 1px solid rgba(0, 0, 0, 0.1);
+          &:hover {
+            background-color: var(--primary);
+            cursor: pointer;
+          }
+        }
+      }
+    }
   }
   .login-page {
     .login-form {
