@@ -6,6 +6,7 @@ import Gallery from "../views/Gallery.vue"
 import Dogs from "../views/Dogs.vue"
 import Dog from "../views/Dog.vue"
 import Admin from "../views/Admin.vue"
+import MissingPage from "../views/MissingPage.vue"
 
 Vue.use(VueRouter)
 
@@ -39,7 +40,17 @@ const routes = [
     path: "/admin",
     name: "admin",
     component: Admin,
-  }  
+  },
+  {
+    path: "*",
+    name: "missingpage",
+    component: MissingPage
+  },
+  {
+    path: "/api*",
+    name: "missingpage",
+    component: MissingPage
+  },
 ]
 
 const router = new VueRouter({
