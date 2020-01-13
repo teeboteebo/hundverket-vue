@@ -76,5 +76,8 @@ export default {
     color: #fff;
     background-color: var(--primary);
   }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "Source Sans Pro", sans-serif;
+  }
 }
 </style>
