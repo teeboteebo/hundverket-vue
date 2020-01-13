@@ -8,7 +8,6 @@ router.post('/api/login', async (req, res) => {
   let {email, password} = req.body
   password = encryptPassword(password)
   let user = await User.findOne({email, password})
-    .select('username role firstName lastName email phone active').exec()
   if (user) {
     req.session.user = user
     res.json({success: 'logged in', user})
