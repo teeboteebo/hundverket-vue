@@ -13,6 +13,7 @@ const connectToDb = require("./server/config/db")
 // Routes
 const loginRoutes = require('./server/api/loginRoutes')
 const userRoutes = require('./server/api/userRoutes')
+const articleRoutes = require('./server/api/articleRoutes')
 
 connectToDb()
 
@@ -34,7 +35,7 @@ app.use(
   }),
 )
 
-app.use(loginRoutes, userRoutes)
+app.use(loginRoutes, userRoutes, articleRoutes)
 
 
 //here we are configuring dist to serve app files

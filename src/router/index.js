@@ -6,6 +6,7 @@ import Gallery from "../views/Gallery.vue"
 import Dogs from "../views/Dogs.vue"
 import Dog from "../views/Dog.vue"
 import Admin from "../views/Admin.vue"
+import NewArticle from "../views/NewArticle.vue"
 import MissingPage from "../views/MissingPage.vue"
 
 Vue.use(VueRouter)
@@ -50,6 +51,11 @@ const routes = [
     path: "/api*",
     name: "missingpage",
     component: MissingPage
+  },
+  {
+    path: "/nytt-inlagg",
+    name: "nyttinlagg",
+    component: NewArticle
   },
 ]
 

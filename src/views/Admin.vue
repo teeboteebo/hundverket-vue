@@ -7,32 +7,26 @@
       <b-row>
         <b-col cols="12" lg="6">
           <h4>Inlägg</h4>
-          <button class="btn btn-info mb-4">
+          <router-link to="/nytt-inlagg" class="btn btn-info mb-4">
             Skapa nytt inlägg
             <PlusIcon size="14" />
-          </button>
+          </router-link>
           <table>
             <tr>
-              <th>Titel</th>
-              <th class="text-right">Publicerad</th>
+              <th width="100%">Titel</th>
+              <th nowrap>Publicerad</th>
             </tr>
-            <tr class="article-preview">
-              <td>Läsning i skolan</td>
-              <td class="text-right">
-                <input type="checkbox" />
+            <tr v-for="article in articles" :key="article._id" class="article-preview">
+              <td class="article-headline" width="100%">{{article.headline}}</td>
+              <td nowrap class="text-right">
+                <input type="checkbox" :checked="article.published" />
               </td>
-            </tr>
-            <tr class="article-preview">
-              <td>Sally utbildning</td>
-              <td class="text-right">
-                <input type="checkbox" checked />
-              </td>
-            </tr>
-            <tr class="article-preview">
-              <td>Nya sidan</td>
-              <td class="text-right">
-                <input type="checkbox" checked />
-              </td>
+              <div class="date">
+                <span>
+                  Skapad: {{new Date(article.created).toLocaleString('sv-SE', {year: "numeric", month: "numeric", day: "numeric", hour: "numeric", minute: "numeric"}) }}
+                  , Redigerad: {{new Date(article.edited).toLocaleString('sv-SE', {year: "numeric", month: "numeric", day: "numeric", hour: "numeric", minute: "numeric"}) }}
+                </span>
+              </div>
             </tr>
           </table>
           <div class="pagination">
@@ -109,11 +103,19 @@ export default {
       state: {
         loading: false,
         loggedIn: false
-      }
+      },
+      articles: []
     };
   },
-  beforeMount() {
-    this.checkIfLoggedIn();
+  async beforeMount() {
+    await this.checkIfLoggedIn();
+    if (this.state.loggedIn) {
+      let articles = await axios({
+        method: "GET",
+        url: "/api/articles"
+      });
+      this.articles = articles.data;
+    }
   },
   methods: {
     async logout() {
@@ -165,14 +167,24 @@ export default {
       padding: 100px;
       width: 100%;
       border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+
       .article-preview {
-        height: 50px;
+        height: 75px;
+        position: relative;
         &:hover {
           cursor: pointer;
           background-color: rgba(0, 0, 0, 0.1);
         }
         &:not(:first-child) {
           border-top: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        .date {
+          font-style: italic;
+          position: absolute;
+          opacity: 0.7;
+          font-size: 10px;
+          left: 15px;
+          white-space: nowrap;
         }
       }
     }
@@ -188,6 +200,7 @@ export default {
           border: 1px solid rgba(0, 0, 0, 0.1);
           &:hover {
             background-color: var(--primary);
+            color: #fff;
             cursor: pointer;
           }
         }
