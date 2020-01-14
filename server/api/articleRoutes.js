@@ -27,6 +27,13 @@ router.get('/api/articles/published/:link', async (req, res) => {
     res.json({ error: 'article not found' })
   }
 })
+//toggle published
+router.put('/api/articles/:link', async (req, res) => {
+  const articleToFind = await Article.findOne({ link: req.params.link })
+  articleToFind.published = !articleToFind.published
+  await articleToFind.save()
+  res.json(articleToFind.published)
+})
 router.post('/api/articles', async (req, res) => {
   console.log(req.body);
   

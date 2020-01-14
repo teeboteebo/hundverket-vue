@@ -13,15 +13,18 @@
               <th width="100%">Titel</th>
               <th nowrap>Publicerad</th>
             </tr>
-            <tr
-              v-for="article in articles"
-              :key="article._id"
-              @click="openArticle(article.link)"
-              class="article-preview"
-            >
-              <td class="article-headline" width="100%">{{article.headline}}</td>
+            <tr v-for="article in articles" :key="article._id" class="article-preview">
+              <td
+                @click="openArticle(article.link)"
+                class="article-headline"
+                width="100%"
+              >{{article.headline}}</td>
               <td nowrap class="text-right">
-                <input type="checkbox" :checked="article.published" />
+                <input
+                  type="checkbox"
+                  @click="togglePublish(article.link)"
+                  :checked="article.published"
+                />
               </td>
               <div class="date">
                 <span>
@@ -36,13 +39,13 @@
               <button
                 :disabled="this.state.page === 1 ? true : false"
                 @click="decPage"
-                class="float-left btn btn-info"
+                class="btn btn-info"
               >&lt; Föregående sida</button>
               <span class="page">sida {{this.state.page}}</span>
               <button
                 :disabled="this.state.currAmtArticles < 5 ? true : false"
                 @click="incPage"
-                class="float-right btn btn-info"
+                class="btn btn-info"
               >Nästa sida &gt;</button>
             </div>
           </div>
@@ -118,23 +121,20 @@ export default {
   },
   methods: {
     openArticle(link) {
-      console.log(link);
-
-      console.log("running");
-
       this.$router.push("/inlagg/" + link);
     },
+    async togglePublish(link) {
+      const response = await axios({
+        method: "PUT",
+        url: `/api/articles/${link}`
+      });
+      console.log(link, "is published: ", response.data);
+    },
     async decPage() {
-      // if (this.state.page === 1) {
-      //   return;
-      // }
       await this.state.page--;
       this.getArticles();
     },
     async incPage() {
-      // if (this.state.currAmtArticles < 5) {
-      //   return;
-      // }
       await this.state.page++;
       this.getArticles();
     },
@@ -145,7 +145,6 @@ export default {
       });
       this.articles = articles.data;
       this.state.currAmtArticles = articles.data.length;
-      console.log("curramt: ", this.state.currAmtArticles);
     },
     async logout() {
       await axios({
@@ -159,7 +158,6 @@ export default {
         method: "GET",
         url: "/api/login"
       });
-      console.log(response.data);
       if (response.data._id) {
         this.state.loggedIn = response.data;
         if (!this.articles[0]) {
@@ -170,7 +168,7 @@ export default {
     async submitLogin(e) {
       e.preventDefault();
       this.state.loading = true;
-      let response = await axios({
+      await axios({
         method: "POST",
         url: "/api/login",
         data: {
@@ -178,7 +176,6 @@ export default {
           password: this.form.password
         }
       });
-      console.log(response.data);
       this.state.loading = false;
       this.checkIfLoggedIn();
     }
