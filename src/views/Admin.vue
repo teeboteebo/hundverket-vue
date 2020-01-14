@@ -7,23 +7,25 @@
       <b-row>
         <b-col cols="12" lg="6">
           <h4>Inlägg</h4>
-          <router-link to="/nytt-inlagg" class="btn btn-info mb-4">
-            Skapa nytt inlägg
-            <PlusIcon size="14" />
-          </router-link>
+          <router-link to="/nytt-inlagg" class="btn btn-info mb-4">Skapa nytt inlägg +</router-link>
           <table>
             <tr>
               <th width="100%">Titel</th>
               <th nowrap>Publicerad</th>
             </tr>
-            <tr v-for="article in articles" :key="article._id" class="article-preview">
+            <tr
+              v-for="article in articles"
+              :key="article._id"
+              @click="openArticle(article.link)"
+              class="article-preview"
+            >
               <td class="article-headline" width="100%">{{article.headline}}</td>
               <td nowrap class="text-right">
                 <input type="checkbox" :checked="article.published" />
               </td>
               <div class="date">
                 <span>
-                  Skapad: {{new Date(article.created).toLocaleString('sv-SE', {year: "numeric", month: "numeric", day: "numeric", hour: "numeric", minute: "numeric"}) }}
+                  Skapad: {{new Date(article.created).toLocaleString('sv-SE', {year: "numeric", month: "numeric", day: "numeric"}) }}
                   , Redigerad: {{new Date(article.edited).toLocaleString('sv-SE', {year: "numeric", month: "numeric", day: "numeric", hour: "numeric", minute: "numeric"}) }}
                 </span>
               </div>
@@ -31,22 +33,23 @@
           </table>
           <div class="pagination">
             <div>
-              <span>&lt;</span>
-              <span class="font-weight-bold">1</span>
-              <span>2</span>
-              <span>3</span>
-              <span>4</span>
-              <span>5</span>
-              <span>&gt;</span>
+              <button
+                :disabled="this.state.page === 1 ? true : false"
+                @click="decPage"
+                class="float-left btn btn-info"
+              >&lt; Föregående sida</button>
+              <span class="page">sida {{this.state.page}}</span>
+              <button
+                :disabled="this.state.currAmtArticles < 5 ? true : false"
+                @click="incPage"
+                class="float-right btn btn-info"
+              >Nästa sida &gt;</button>
             </div>
           </div>
         </b-col>
         <b-col cols="12" lg="6" class="mt-4 mt-lg-0">
           <h4>Hundarna</h4>
-          <button class="btn btn-info">
-            Lägg till ny hund
-            <PlusIcon size="14" />
-          </button>
+          <button class="btn btn-info">Lägg till ny hund +</button>
         </b-col>
       </b-row>
     </div>
@@ -87,13 +90,10 @@
 </template>
 
 <script>
-import { PlusIcon } from "vue-feather-icons";
 import axios from "axios";
 export default {
   name: "admin",
-  components: {
-    PlusIcon
-  },
+  components: {},
   data() {
     return {
       form: {
@@ -102,22 +102,51 @@ export default {
       },
       state: {
         loading: false,
-        loggedIn: false
+        loggedIn: false,
+        page: 1,
+        currAmtArticles: ""
       },
       articles: []
     };
   },
+
   async beforeMount() {
     await this.checkIfLoggedIn();
     if (this.state.loggedIn) {
-      let articles = await axios({
-        method: "GET",
-        url: "/api/articles"
-      });
-      this.articles = articles.data;
+      this.getArticles();
     }
   },
   methods: {
+    openArticle(link) {
+      console.log(link);
+
+      console.log("running");
+
+      this.$router.push("/inlagg/" + link);
+    },
+    async decPage() {
+      // if (this.state.page === 1) {
+      //   return;
+      // }
+      await this.state.page--;
+      this.getArticles();
+    },
+    async incPage() {
+      // if (this.state.currAmtArticles < 5) {
+      //   return;
+      // }
+      await this.state.page++;
+      this.getArticles();
+    },
+    async getArticles(page = this.state.page) {
+      let articles = await axios({
+        method: "GET",
+        url: `/api/articles?page=${page}`
+      });
+      this.articles = articles.data;
+      this.state.currAmtArticles = articles.data.length;
+      console.log("curramt: ", this.state.currAmtArticles);
+    },
     async logout() {
       await axios({
         method: "DELETE",
@@ -133,6 +162,9 @@ export default {
       console.log(response.data);
       if (response.data._id) {
         this.state.loggedIn = response.data;
+        if (!this.articles[0]) {
+          this.getArticles();
+        }
       } else this.state.loggedIn = false;
     },
     async submitLogin(e) {
@@ -148,9 +180,7 @@ export default {
       });
       console.log(response.data);
       this.state.loading = false;
-      if (response.data.success) {
-        this.state.loggedIn = true;
-      }
+      this.checkIfLoggedIn();
     }
   }
 };
@@ -194,10 +224,18 @@ export default {
       div {
         text-align: center;
         flex: 1;
-        display: inline-block;
+        display: flex;
         & > * {
           padding: 0.5rem;
+        }
+        .page {
+          flex: 1;
+        }
+        .left,
+        .right {
+          border-radius: 4px;
           border: 1px solid rgba(0, 0, 0, 0.1);
+          min-width: 100px;
           &:hover {
             background-color: var(--primary);
             color: #fff;

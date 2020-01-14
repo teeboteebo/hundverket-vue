@@ -13,7 +13,7 @@
             <b-col cols="12" md="6">
               <div class="input-grp">
                 <label for="Bild">Bild</label>
-                <input name="Bild" type="text" class="input-field" v-model="form.img" />
+                <input name="Bild" type="text" class="input-field" v-model="form.image" />
               </div>
             </b-col>
           </b-row>
@@ -48,7 +48,7 @@ export default {
     return {
       form: {
         headline: "",
-        img: "",
+        image: "",
         body: ""
       }
     };
@@ -59,7 +59,7 @@ export default {
       this.$router.go(-1);
     },
     async submitArticle(e) {
-      const { headline, img, body } = this.form;
+      const { headline, image, body } = this.form;
       e.preventDefault();
       let link = this.form.headline.replace(/\s+/g, "-").toLowerCase(); //convert headline into a link-friendly format
       let response = await axios({
@@ -68,14 +68,15 @@ export default {
         data: {
           link,
           headline,
-          img,
+          image,
           body
         }
       });
       console.log(response.data);
+      this.$router.push('/admin');
     },
     async submitAndPublishArticle(e) {
-      const { headline, img, body } = this.form;
+      const { headline, image, body } = this.form;
       e.preventDefault();
       let link = this.form.headline.replace(/\s+/g, "-").toLowerCase(); //convert headline into a link-friendly format
       let response = await axios({
@@ -84,12 +85,12 @@ export default {
         data: {
           link,
           headline,
-          img,
+          image,
           body,
           published: true
         }
       });
-      console.log(response.data);
+      this.$router.push('/inlagg/' + response.data.link)
     },
   }
 };

@@ -7,6 +7,7 @@ import Dogs from "../views/Dogs.vue"
 import Dog from "../views/Dog.vue"
 import Admin from "../views/Admin.vue"
 import NewArticle from "../views/NewArticle.vue"
+import ArticlePage from "../views/ArticlePage.vue"
 import MissingPage from "../views/MissingPage.vue"
 
 Vue.use(VueRouter)
@@ -56,6 +57,11 @@ const routes = [
     path: "/nytt-inlagg",
     name: "nyttinlagg",
     component: NewArticle
+  },
+  {
+    path: "/inlagg/:link",
+    name: "inlagg",
+    component: ArticlePage,
   },
 ]
 
