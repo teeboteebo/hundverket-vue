@@ -62,7 +62,7 @@ export default {
       const { headline, image, body } = this.form;
       e.preventDefault();
       let link = this.form.headline.replace(/\s+/g, "-").toLowerCase(); //convert headline into a link-friendly format
-      let response = await axios({
+      await axios({
         method: "POST",
         url: "/api/articles",
         data: {
@@ -72,7 +72,6 @@ export default {
           body
         }
       });
-      console.log(response.data);
       this.$router.push('/admin');
     },
     async submitAndPublishArticle(e) {

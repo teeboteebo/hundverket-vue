@@ -128,7 +128,6 @@ export default {
         method: "PUT",
         url: `/api/articles/${link}`
       });
-      console.log(link, "is published: ", response.data);
     },
     async decPage() {
       await this.state.page--;
