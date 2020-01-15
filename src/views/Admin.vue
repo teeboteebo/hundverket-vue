@@ -20,11 +20,14 @@
                 width="100%"
               >{{article.headline}}</td>
               <td nowrap class="text-right">
-                <input
-                  type="checkbox"
-                  @click="togglePublish(article.link)"
-                  :checked="article.published"
-                />
+                <label class="switch">
+                  <input
+                    type="checkbox"
+                    @click="togglePublish(article.link)"
+                    :checked="article.published"
+                  />
+                  <span class="slider round"></span>
+                </label>
               </td>
               <div class="date">
                 <span>
@@ -211,6 +214,65 @@ export default {
           font-size: 10px;
           left: 15px;
           white-space: nowrap;
+        }
+        .switch {
+          position: relative;
+          display: inline-block;
+          width: 30px;
+          height: 15px;
+        }
+
+        .switch input {
+          opacity: 0;
+          width: 0;
+          height: 0;
+        }
+
+        .slider {
+          position: absolute;
+          cursor: pointer;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background-color: #ccc;
+          -webkit-transition: 0.4s;
+          transition: 0.4s;
+        }
+
+        .slider:before {
+          position: absolute;
+          content: "";
+          height: 11px;
+          width: 11px;
+          left: 2px;
+          bottom: 2px;
+          background-color: white;
+          -webkit-transition: 0.4s;
+          transition: 0.4s;
+        }
+
+        input:checked + .slider {
+          background-color: #2196f3;
+        }
+
+        input:focus + .slider {
+          box-shadow: 0 0 1px #2196f3;
+        }
+
+        input:checked + .slider:before {
+          -webkit-transform: translateX(15px);
+          -ms-transform: translateX(15px);
+          transform: translateX(15px);
+        }
+
+        /* Rounded sliders */
+        .slider.round {
+          border-radius: 17px;
+        }
+
+        .slider.round:before {
+          border-radius: 50%;
         }
       }
     }
