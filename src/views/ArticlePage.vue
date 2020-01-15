@@ -1,5 +1,6 @@
 <template>
-  <b-container v-if="this.state.article._id" class="wrapper article-page">
+  <Loader v-if="this.state.loading"/>
+  <b-container v-else-if="this.state.article._id" class="wrapper article-page">
     {{this.state.article.headline}}
     <br />
     {{this.state.article.image}}
@@ -11,9 +12,10 @@
 <script>
 import axios from "axios";
 import MissingPage from '../views/MissingPage'
+import Loader from '../components/Loader'
 export default {
   name: "articlepage",
-  components: {MissingPage},
+  components: {MissingPage, Loader},
   data() {
     return {
       state: {
@@ -31,12 +33,14 @@ export default {
         url: `/api/articles/${this.$route.params.link}`
       });
       this.state.article = article.data;
+      this.state.loading = false
     } else {
       const article = await axios({
         method: "GET",
         url: `/api/articles/published/${this.$route.params.link}`
       });
       this.state.article = article.data;
+      this.state.loading = false
     }
   },
   methods: {

@@ -124,7 +124,7 @@ export default {
       this.$router.push("/inlagg/" + link);
     },
     async togglePublish(link) {
-      const response = await axios({
+      await axios({
         method: "PUT",
         url: `/api/articles/${link}`
       });
