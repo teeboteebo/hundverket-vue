@@ -4,7 +4,7 @@ const { connectionString } = require('./connectionString.js')
 const connectToDb = () => {
   // connect to db for testing
   mongoose
-    .connect(connectionString, { useNewUrlParser: true, useUnifiedTopology: true })
+    .connect(process.env.API_KEY || connectionString, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log("MongoDB connected"))
     .catch(err => console.log(err))
 
