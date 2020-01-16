@@ -124,5 +124,3 @@ yarn-error.log*
 *.njsproj
 *.sln
 *.sw?
-
-connectionString.js
