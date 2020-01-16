@@ -2,7 +2,7 @@ const mongoose = require("mongoose")
 const Schema = mongoose.Schema
 
 let articleSchema = new Schema({
-  created: { type: Date, default: new Date().getTime() },
+  created: { type: Date },
   edited: { type: Date },
   link: { type: String, unique: true },
   headline: { type: String },
@@ -10,7 +10,5 @@ let articleSchema = new Schema({
   image: { type: String },
   published: { type: Boolean, default: false }
 })
-articleSchema.pre('save', async function () {
-  this.edited = new Date().getTime();
-});
+
 module.exports = mongoose.model("Article", articleSchema)
