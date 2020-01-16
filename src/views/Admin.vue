@@ -43,13 +43,13 @@
                 :disabled="this.state.page === 1 ? true : false"
                 @click="decPage"
                 class="btn btn-info"
-              >&lt; Föregående sida</button>
+              >&lt; Bakåt</button>
               <span class="page">sida {{this.state.page}}</span>
               <button
                 :disabled="this.state.currAmtArticles < 5 ? true : false"
                 @click="incPage"
                 class="btn btn-info"
-              >Nästa sida &gt;</button>
+              >Framåt &gt;</button>
             </div>
           </div>
         </b-col>
@@ -289,16 +289,8 @@ export default {
         .page {
           flex: 1;
         }
-        .left,
-        .right {
-          border-radius: 4px;
-          border: 1px solid rgba(0, 0, 0, 0.1);
-          min-width: 100px;
-          &:hover {
-            background-color: var(--primary);
-            color: #fff;
-            cursor: pointer;
-          }
+        button {
+          min-width: 90px;
         }
       }
     }
