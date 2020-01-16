@@ -129,7 +129,7 @@ export default {
     async togglePublish(link) {
       await axios({
         method: "PUT",
-        url: `/api/articles/${link}`
+        url: `/api/articles/${link}/toggle`
       });
     },
     async decPage() {
