@@ -1,5 +1,5 @@
 <template>
-  <b-container class="p-md-0">
+  <b-container>
     <b-row class="w-100 no-gutters">
       <b-col cols="8" lg="4" class="text-left">
         <div class="logo-holder d-inline-block">
