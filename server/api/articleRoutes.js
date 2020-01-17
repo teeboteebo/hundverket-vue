@@ -75,4 +75,15 @@ router.post('/api/articles', async (req, res) => {
   }
 })
 
+router.delete('/api/articles/:id', async (req, res) => {
+  const articleToDelete = await Article.findById(req.params.id)
+  try {
+    articleToDelete.delete()
+    res.json({success:'deleted'})
+  }
+  catch(err){
+    res.json({error:'could not delete'})
+  }
+})
+
 module.exports = router

@@ -1,16 +1,19 @@
 <template>
   <form class="article-form">
-    <b-row>
+    <h2 v-if="edit">Redigera inlägg</h2>
+    <h2 v-else>Nytt inlägg</h2>
+    <b-row class="mt-5">
       <b-col cols="12" md="6">
         <div class="input-grp">
           <label for="Rubrik">Rubrik</label>
-          <input name="Rubrik" type="text" class="input-field" v-model="form.headline" />
+          <input required name="Rubrik" type="text" class="input-field" v-model="form.headline" />
         </div>
       </b-col>
       <b-col cols="12" md="6">
         <div class="input-grp">
           <label for="Bild">Bild</label>
-          <input name="Bild" type="text" class="input-field" v-model="form.image" />
+          <b-form-file v-model="form.image" class plain></b-form-file>
+          <button @click="form.image = null" class="btn btn-danger mt-2 max-w-50">Återställ bild</button>
         </div>
       </b-col>
     </b-row>
@@ -28,7 +31,7 @@
         <button @click="submitArticle" class="btn btn-info mt-3">Spara</button>
         <button
           @click="submitAndPublishArticle"
-          class="btn btn-primary ml-md-3 mt-3"
+          class="btn btn-primary ml-lg-3 mt-3"
         >Spara och publicera</button>
       </div>
     </div>
@@ -57,6 +60,9 @@ export default {
         // The configuration of the rich-text editor.
       }
     };
+  },
+  updated() {
+    console.log(this.editorData);
   },
   beforeMount() {
     if (this.edit) {
@@ -97,7 +103,7 @@ export default {
         link,
         image,
         body: this.editorData
-      };      
+      };
       this.toggleEdit("toggleEdit", article);
     },
     async submitArticle(e) {

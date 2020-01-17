@@ -28,6 +28,11 @@
                   />
                   <span class="slider round"></span>
                 </label>
+                <div class="w-100 text-right">
+                  <span @click="deleteArticle(article)" class="delete-btn bg-danger">
+                    <Trash2Icon size="14" />
+                  </span>
+                </div>
               </td>
               <div class="date">
                 <span>
@@ -96,10 +101,11 @@
 </template>
 
 <script>
+import { Trash2Icon } from "vue-feather-icons";
 import axios from "axios";
 export default {
   name: "admin",
-  components: {},
+  components: { Trash2Icon },
   data() {
     return {
       form: {
@@ -115,7 +121,6 @@ export default {
       articles: []
     };
   },
-
   async beforeMount() {
     await this.checkIfLoggedIn();
     if (this.state.loggedIn) {
@@ -138,6 +143,17 @@ export default {
     },
     async incPage() {
       await this.state.page++;
+      this.getArticles();
+    },
+    async deleteArticle(article) {
+      if (confirm(`Är du säker på att du vill ta bort inlägget "${article.headline}"? Detta är permanent och går inte att ångra.`)) {
+        await axios({
+          method: "DELETE",
+          url: `/api/articles/${article._id}`
+        });
+      } else {
+        return;
+      }
       this.getArticles();
     },
     async getArticles(page = this.state.page) {
@@ -192,6 +208,9 @@ export default {
     text-align: center;
   }
   .admin-page {
+    .delete-btn {
+      font-size: 8px;
+    }
     table {
       padding: 100px;
       width: 100%;
@@ -201,11 +220,20 @@ export default {
         height: 75px;
         position: relative;
         &:hover {
-          cursor: pointer;
           background-color: rgba(0, 0, 0, 0.1);
         }
         &:not(:first-child) {
           border-top: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        .article-headline {
+          cursor: pointer;
+        }
+        .delete-btn {
+          cursor: pointer;
+          border-radius: 4px;
+          padding: 4px 4px 8px;
+          line-height: 4px;
+          color: #fff;
         }
         .date {
           font-style: italic;
