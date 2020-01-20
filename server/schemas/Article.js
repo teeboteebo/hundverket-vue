@@ -8,7 +8,8 @@ let articleSchema = new Schema({
   headline: { type: String },
   body: { type: String },
   image: { type: String },
-  published: { type: Boolean, default: false }
+  published: { type: Boolean, default: false },
+  publishedAt: { type: Date }
 })
 
 module.exports = mongoose.model("Article", articleSchema)

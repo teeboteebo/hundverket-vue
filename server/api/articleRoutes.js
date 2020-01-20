@@ -9,6 +9,11 @@ router.get('/api/articles', async (req, res) => {
   const allArticles = await Article.find().sort({ "created": -1 }).skip(page).limit(5).exec()
   res.json(allArticles)
 })
+router.get('/api/articles/published', async (req, res) => {
+  const page = req.query.page * 5 - 5 // page 1 = skip 0, page 2 = skip 5...
+  const allArticles = await Article.find({"published": true}).sort({ "created": -1 }).skip(page).limit(5).exec()
+  res.json(allArticles)
+})
 router.get('/api/articles/:link', async (req, res) => {
   const articleToFind = await Article.findOne({ link: req.params.link })
   if (articleToFind) {
@@ -31,6 +36,7 @@ router.get('/api/articles/published/:link', async (req, res) => {
 router.put('/api/articles/:link/toggle', async (req, res) => {
   const articleToFind = await Article.findOne({ link: req.params.link })
   articleToFind.published = !articleToFind.published
+  articleToFind.publishedAt = new Date().getTime()
   await articleToFind.save()
   res.json(articleToFind.published)
 })

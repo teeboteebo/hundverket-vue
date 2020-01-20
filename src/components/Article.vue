@@ -24,7 +24,6 @@ export default {
   .article-header {}
   .article-body {
     .body-content {
-      overflow-x: scroll;
       ol, ul {
         margin-left: 1rem !important;
       }
