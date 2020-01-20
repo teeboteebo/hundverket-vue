@@ -66,9 +66,13 @@ router.put('/api/articles/:link/edit', async (req, res) => {
 })
 router.post('/api/articles', async (req, res) => {
   console.log(req.body);
-
+  let image = req.body.image
+  if(!req.body.image){
+    image = 'https://via.placeholder.com/300x300?text=Artikelbild'
+  }
   let article = new Article({
     ...req.body, 
+    image,
     created: new Date().getTime(), 
     edited: new Date().getTime()
   })
