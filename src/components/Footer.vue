@@ -35,8 +35,8 @@
           </li>
         </ul>
         <section>
-          <img class="elisabeth-img" src="@/assets/elisabeth.jpg" alt="Elisabeth med Ebbe" />
           <router-link to="/">
+          <img class="elisabeth-img" src="@/assets/elisabeth.jpg" alt="Elisabeth med Ebbe" />
             <img class="logo-img" src="@/assets/logo.png" />
           </router-link>
         </section>

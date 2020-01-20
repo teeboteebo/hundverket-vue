@@ -10,9 +10,11 @@ router.get('/api/articles', async (req, res) => {
   res.json(allArticles)
 })
 router.get('/api/articles/published', async (req, res) => {
-  const page = req.query.page * 5 - 5 // page 1 = skip 0, page 2 = skip 5...
-  const allArticles = await Article.find({"published": true}).sort({ "created": -1 }).skip(page).limit(5).exec()
-  res.json(allArticles)
+  const amount = parseInt(req.query.amount)
+  const allArticles = await Article.find({"published": true}).sort({ "created": -1 }).limit(amount).exec()
+  const totalArticles = (await Article.find({"published": true}).sort({ "created": -1 }).exec()).length
+  
+  res.json({allArticles, total: totalArticles})
 })
 router.get('/api/articles/:link', async (req, res) => {
   const articleToFind = await Article.findOne({ link: req.params.link })

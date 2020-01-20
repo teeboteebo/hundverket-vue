@@ -1,7 +1,7 @@
 <template>
   <b-row class="article-preview mb-4" @click="openArticle(article.link)">
 
-    {{article.headline + (article.publishedAt ? ", " + new Date(article.publishedAt).toLocaleString('sv-SE', {year: "numeric", month: "numeric", day: "numeric", hour: "numeric", minute: "numeric"}) : '') }}
+    {{article.headline + ", " + new Date(article.created).toLocaleString('sv-SE', {year: "numeric", month: "numeric", day: "numeric", hour: "numeric", minute: "numeric"}) }}
   </b-row>
 </template>
 <script>
@@ -24,6 +24,9 @@ export default {
   &:hover {
     box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.1);
     cursor: pointer;
+  }
+  &:active {
+    box-shadow: inset 0 0 5px 1px rgba(0, 0, 0, 0.1);
   }
 }
 </style>
