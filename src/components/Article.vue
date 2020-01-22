@@ -4,10 +4,11 @@
       <b-col>
         <img class="article-image" :src="articleData.image" alt="inläggsbild" />
       </b-col>
-    </b-row> -->
+    </b-row>-->
     <b-row class="article-header">
       <b-col>
-        <h2 >{{articleData.headline}}</h2>
+        <h2>{{articleData.headline}}</h2>
+        <p>{{ new Date(articleData.created).toLocaleString('sv-SE',{year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric'}) }}</p>
       </b-col>
     </b-row>
     <b-row class="article-body py-4">

@@ -4,10 +4,14 @@
     <div class="article-image-bg">
       <div class="bg-blur-image" :style="{backgroundImage: `url(${state.article.image})`}" />
       <div class="image-holder">
-        <img class="article-image" :src="state.article.image" alt="Inläggsbild" />
+        <b-container
+          class="article-image"
+          :style="{backgroundImage: `url(${state.article.image})`}"
+        />
+        <!-- <img class="article-image" :src="state.article.image" alt="Inläggsbild" /> -->
       </div>
     </div>
-    <b-container class="content-wrapper bg-white py-5">
+    <b-container class="content-wrapper bg-white py-5 p-lg-5">
       <Article v-if="!this.state.edit" :articleData="this.state.article" />
       <EditArticle
         v-else-if="this.state.edit"
@@ -109,8 +113,14 @@ export default {
       align-items: center;
       .article-image {
         display: inline-block;
-        width: auto;
+        //
         height: 100%;
+        background-size: cover;
+        background-position: center center;
+        //
+        // width: auto;
+        // height: 100%;
+        // max-width: 100%;
         margin: 0 auto;
       }
     }

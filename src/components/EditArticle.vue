@@ -18,7 +18,7 @@
           >* Högerklicka på önskad bild och välj "kopiera bildadress". Klistra in länken i fältet ovan. T.ex.</p>
           <!-- <b-form-file v-model="form.image" class plain></b-form-file>
           <button @click="form.image = null" class="btn btn-danger mt-2 max-w-50">Återställ bild</button>-->
-          <img v-if="form.image" :src="form.image" width="150px"/> 
+          <img v-if="form.image" :src="form.image" class="mb-4" width="150px"/> 
         </div>
       </b-col>
     </b-row>
@@ -171,6 +171,9 @@ export default {
 
 .article-form {
   .input-grp {
+    label {
+      font-weight: bold;
+    }
     .input-field {
       display: block;
       width: 100%;
