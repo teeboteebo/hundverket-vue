@@ -82,11 +82,9 @@ export default {
   },
   methods: {
     removeHTML() {
-      console.log("run");
       let body = this.editorData;
       let result = body.replace(/(<([^>]+)>)/gi, "");
       result = result.replace(/[&]nbsp[;]/gi, " "); // removes all occurrences of &nbsp;
-      console.log(result);
       return result;
     },
     setDefaultValues() {

@@ -4,7 +4,7 @@
     <b-container class="wrapper">
       <b-row>
         <b-col cols="12" lg="8" class="articles">
-          <h2>Senaste inläggen</h2>
+          <h2 class="mb-3">Senaste inläggen</h2>
           <ArticleLister :articles="state.articles" />
           <button v-if="state.amount < state.totalAmtArticles" @click="loadMoreArticles" class="btn btn-outline btn-outline-primary">Visa fler</button>
         </b-col>

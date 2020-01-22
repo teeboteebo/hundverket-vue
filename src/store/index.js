@@ -14,9 +14,7 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    async checkIfLoggedIn(context) {
-      console.log('running');
-      
+    async checkIfLoggedIn(context) {      
       let loggedIn = await axios({
         method: 'get',
         url: '/api/login'
