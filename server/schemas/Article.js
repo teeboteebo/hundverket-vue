@@ -8,6 +8,7 @@ let articleSchema = new Schema({
   headline: { type: String },
   body: { type: String },
   image: { type: String },
+  summary: { type: String },
   published: { type: Boolean, default: false },
   publishedAt: { type: Date }
 })

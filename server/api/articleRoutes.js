@@ -52,6 +52,7 @@ router.put('/api/articles/:link/edit', async (req, res) => {
   articleToSave.headline = req.body.headline
   articleToSave.image = req.body.image
   articleToSave.body = req.body.body,
+  articleToSave.summary = req.body.summary,
   articleToSave.link = req.body.link
   
   try {

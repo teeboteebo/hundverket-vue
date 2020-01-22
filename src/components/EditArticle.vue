@@ -1,5 +1,5 @@
 <template>
-  <form class="article-form">
+  <form class="article-form pt-4">
     <h2 v-if="edit">Redigera inlägg</h2>
     <h2 v-else>Nytt inlägg</h2>
     <b-row class="mt-5">
@@ -11,11 +11,14 @@
       </b-col>
       <b-col cols="12" md="6">
         <div class="input-grp">
-          <label for="Bild">Bild*</label>
+          <label for="Bild">Bild *</label>
           <input required name="Bild" type="text" class="input-field" v-model="form.image" />
-          <p :style="{fontStyle: 'italic'}">* Högerklicka på önskad bild och välj "kopiera bildadress". Klistra in länken i fältet ovan.</p>
+          <p
+            :style="{fontStyle: 'italic', opacity: .8, fontSize: '.8rem'}"
+          >* Högerklicka på önskad bild och välj "kopiera bildadress". Klistra in länken i fältet ovan. T.ex.</p>
           <!-- <b-form-file v-model="form.image" class plain></b-form-file>
           <button @click="form.image = null" class="btn btn-danger mt-2 max-w-50">Återställ bild</button>-->
+          <img v-if="form.image" :src="form.image" width="150px"/> 
         </div>
       </b-col>
     </b-row>
@@ -23,7 +26,13 @@
       <b-col>
         <div class="input-grp">
           <label for="Innehåll">Innehåll</label>
-          <ckeditor name="Innehåll" :editor="editor" v-model="editorData" :config="editorConfig" />
+          <ckeditor
+            :style="{minHeight: '500px'}"
+            name="Innehåll"
+            :editor="editor"
+            v-model="editorData"
+            :config="editorConfig"
+          />
         </div>
       </b-col>
     </b-row>
@@ -54,7 +63,8 @@ export default {
     return {
       form: {
         headline: "",
-        image: ""
+        image: "",
+        summary: ""
       },
       editor: ClassicEditor,
       editorData: "",
@@ -62,9 +72,6 @@ export default {
         // The configuration of the rich-text editor.
       }
     };
-  },
-  updated() {
-    console.log(this.editorData);
   },
   beforeMount() {
     if (this.edit) {
@@ -74,10 +81,19 @@ export default {
     }
   },
   methods: {
+    removeHTML() {
+      console.log("run");
+      let body = this.editorData;
+      let result = body.replace(/(<([^>]+)>)/gi, "");
+      result = result.replace(/[&]nbsp[;]/gi, " "); // removes all occurrences of &nbsp;
+      console.log(result);
+      return result;
+    },
     setDefaultValues() {
       this.form = {
         headline: this.article.headline,
-        image: this.article.image
+        image: this.article.image,
+        summary: this.article.summary
       };
       this.editorData = this.article.body;
     },
@@ -88,6 +104,7 @@ export default {
     async saveArticle(e) {
       e.preventDefault();
       const { headline, image } = this.form;
+      const summary = this.removeHTML();
       let link = this.form.headline.replace(/\s+/g, "-").toLowerCase(); //convert headline into a link-friendly format
       await axios({
         method: "PUT",
@@ -96,6 +113,7 @@ export default {
           headline,
           link,
           image,
+          summary,
           body: this.editorData
         }
       });
@@ -110,6 +128,7 @@ export default {
     },
     async submitArticle(e) {
       const { headline, image } = this.form;
+      const summary = this.removeHTML();
       e.preventDefault();
       let link = this.form.headline.replace(/\s+/g, "-").toLowerCase(); //convert headline into a link-friendly format
       await axios({
@@ -119,6 +138,7 @@ export default {
           link,
           headline,
           image,
+          summary,
           body: this.editorData
         }
       });
@@ -126,6 +146,7 @@ export default {
     },
     async submitAndPublishArticle(e) {
       const { headline, image } = this.form;
+      const summary = this.removeHTML();
       e.preventDefault();
       let link = this.form.headline.replace(/\s+/g, "-").toLowerCase(); //convert headline into a link-friendly format
       let response = await axios({
@@ -135,6 +156,7 @@ export default {
           link,
           headline,
           image,
+          summary,
           body: this.editorData,
           published: true
         }
