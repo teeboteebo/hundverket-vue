@@ -11,9 +11,11 @@
       </b-col>
       <b-col cols="12" md="6">
         <div class="input-grp">
-          <label for="Bild">Bild</label>
-          <b-form-file v-model="form.image" class plain></b-form-file>
-          <button @click="form.image = null" class="btn btn-danger mt-2 max-w-50">Återställ bild</button>
+          <label for="Bild">Bild*</label>
+          <input required name="Bild" type="text" class="input-field" v-model="form.image" />
+          <p :style="{fontStyle: 'italic'}">* Högerklicka på önskad bild och välj "kopiera bildadress". Klistra in länken i fältet ovan.</p>
+          <!-- <b-form-file v-model="form.image" class plain></b-form-file>
+          <button @click="form.image = null" class="btn btn-danger mt-2 max-w-50">Återställ bild</button>-->
         </div>
       </b-col>
     </b-row>

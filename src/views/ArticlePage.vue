@@ -1,7 +1,7 @@
 <template>
-  <Loader v-if="this.state.loading" />
+  <Loader v-if="state.loading" />
   <b-container v-else-if="this.state.article._id" class="wrapper">
-    <div v-if="this.state.loggedIn" class="text-right">
+    <div v-if="loggedIn" class="text-right">
       <button @click="toggleEdit" class="btn" :class="this.state.edit ? 'btn-danger' : 'btn-info'">
         <span v-if="this.state.edit">Avbryt</span>
         <span v-else>Redigera</span>
@@ -32,14 +32,18 @@ export default {
       state: {
         loading: true,
         article: {},
-        loggedIn: false,
         edit: false
       }
     };
   },
+  computed: {
+    loggedIn() {
+      return this.$store.state.loggedIn
+    }
+  },
   async beforeMount() {
-    await this.checkIfLoggedIn();
-    if (this.state.loggedIn) {
+    await this.$store.dispatch('checkIfLoggedIn')
+    if (this.loggedIn) {
       const article = await axios({
         method: "GET",
         url: `/api/articles/${this.$route.params.link}`
@@ -65,15 +69,6 @@ export default {
       } else {
         this.state.edit = !this.state.edit;
       }
-    },
-    async checkIfLoggedIn() {
-      let response = await axios({
-        method: "GET",
-        url: "/api/login"
-      });
-      if (response.data._id) {
-        this.state.loggedIn = response.data;
-      } else this.state.loggedIn = false;
     }
   }
 };

@@ -1,8 +1,8 @@
 <template>
   <b-container class="wrapper">
-    <div v-if="state.loggedIn" class="admin-page">
+    <div v-if="loggedIn" class="admin-page">
       <h3>Kontrollpanel</h3>
-      <p>Inloggad som: {{state.loggedIn.email}}</p>
+      <p>Inloggad som: {{loggedIn.email}}</p>
       <button @click="logout" small class="btn btn-danger mb-5">Logga ut</button>
       <b-row>
         <b-col cols="12" lg="6">
@@ -114,16 +114,20 @@ export default {
       },
       state: {
         loading: false,
-        loggedIn: false,
         page: 1,
         currAmtArticles: ""
       },
       articles: []
     };
   },
+  computed: {
+    loggedIn() {
+      return this.$store.state.loggedIn
+    }
+  },
   async beforeMount() {
-    await this.checkIfLoggedIn();
-    if (this.state.loggedIn) {
+    await this.$store.dispatch('checkIfLoggedIn');
+    if (this.loggedIn) {
       this.getArticles();
     }
   },
@@ -169,19 +173,7 @@ export default {
         method: "DELETE",
         url: "/api/login"
       });
-      this.checkIfLoggedIn();
-    },
-    async checkIfLoggedIn() {
-      let response = await axios({
-        method: "GET",
-        url: "/api/login"
-      });
-      if (response.data._id) {
-        this.state.loggedIn = response.data;
-        if (!this.articles[0]) {
-          this.getArticles();
-        }
-      } else this.state.loggedIn = false;
+      this.$store.dispatch('checkIfLoggedIn');
     },
     async submitLogin(e) {
       e.preventDefault();
@@ -195,7 +187,7 @@ export default {
         }
       });
       this.state.loading = false;
-      this.checkIfLoggedIn();
+      this.$store.dispatch('checkIfLoggedIn');
     }
   }
 };
