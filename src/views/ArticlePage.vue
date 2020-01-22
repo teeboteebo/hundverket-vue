@@ -1,21 +1,33 @@
 <template>
   <Loader v-if="state.loading" />
-  <b-container v-else-if="this.state.article._id" class="wrapper">
-    <div v-if="loggedIn" class="text-right">
-      <button @click="toggleEdit" class="btn" :class="this.state.edit ? 'btn-danger' : 'btn-info'">
-        <span v-if="this.state.edit">Avbryt</span>
-        <span v-else>Redigera</span>
-      </button>
+  <div v-else-if="this.state.article._id" class="article-wrapper">
+    <div class="article-image-bg">
+      <div class="bg-blur-image" :style="{backgroundImage: `url(${state.article.image})`}" />
+      <div class="image-holder">
+        <img class="article-image" :src="state.article.image" alt="Inläggsbild" />
+      </div>
     </div>
-    <Article v-if="!this.state.edit" :articleData="this.state.article" />
-    <EditArticle
-      v-else-if="this.state.edit"
-      :edit="this.state.edit"
-      :toggleEdit="toggleEdit"
-      :article="this.state.article"
-    />
-    <!-- <EditArticle v-if="this.state.edit" :articleData="this.state.article" /> -->
-  </b-container>
+    <b-container class="content-wrapper bg-white py-5">
+      <Article v-if="!this.state.edit" :articleData="this.state.article" />
+      <EditArticle
+        v-else-if="this.state.edit"
+        :edit="this.state.edit"
+        :toggleEdit="toggleEdit"
+        :article="this.state.article"
+      />
+      <div v-if="loggedIn" class="text-right">
+        <button
+          @click="toggleEdit"
+          class="btn my-3 edit-btn"
+          :class="this.state.edit ? 'btn-danger' : 'btn-info'"
+        >
+          <span v-if="this.state.edit">Avbryt</span>
+          <span v-else>Redigera</span>
+        </button>
+      </div>
+      <!-- <EditArticle v-if="this.state.edit" :articleData="this.state.article" /> -->
+    </b-container>
+  </div>
   <MissingPage v-else />
 </template>
 <script>
@@ -38,11 +50,11 @@ export default {
   },
   computed: {
     loggedIn() {
-      return this.$store.state.loggedIn
+      return this.$store.state.loggedIn;
     }
   },
   async beforeMount() {
-    await this.$store.dispatch('checkIfLoggedIn')
+    await this.$store.dispatch("checkIfLoggedIn");
     if (this.loggedIn) {
       const article = await axios({
         method: "GET",
@@ -74,4 +86,54 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+@import "../scss/bootstrap";
+.article-wrapper {
+  width: 100%;
+  .article-image-bg {
+    position: relative;
+    background-size: cover;
+    background-position: center center;
+    z-index: 10;
+
+    background-repeat: no-repeat;
+    height: 60vh;
+    .image-holder {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      top: 0;
+      z-index: 10;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      .article-image {
+        display: inline-block;
+        width: auto;
+        height: 100%;
+        margin: 0 auto;
+      }
+    }
+    .bg-blur-image {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      top: 0;
+      z-index: 5;
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+      filter: blur(2px);
+    }
+  }
+  .content-wrapper {
+    margin-top: -5px;
+    .edit-btn {
+      @include media-breakpoint-down(md) {
+        width: 100%;
+      }
+    }
+  }
+}
 </style>

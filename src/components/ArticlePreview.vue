@@ -6,7 +6,7 @@
     </b-col>
     <b-col cols="12" md="8" class="p-2 preview-content">
       <h3 class="content-headline">{{article.headline}}</h3>
-      <p class="content-body">{{article.body.length > 260 ? article.body.slice(0,260) + '...' : article.body}}</p>
+      <p class="content-body">{{article.summary.length > 260 ? article.summary.slice(0,260) + '...' : article.summary}}</p>
       <p
         class="content-date"
       >{{new Date(article.created).toLocaleString('sv-SE', {year: "numeric", month: "numeric", day: "numeric"}) }}</p>
@@ -37,12 +37,16 @@ export default {
   &:active {
     box-shadow: inset 0 0 5px 1px rgba(0, 0, 0, 0.1);
   }
+  .image-holder {
+
+    min-height: 200px;
   .preview-image {
     width: 100%;
     height: 100%;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+  }
   }
   .preview-content {
     max-height: 100%;
