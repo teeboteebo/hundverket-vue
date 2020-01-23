@@ -60,7 +60,8 @@
         </b-col>
         <b-col cols="12" lg="6" class="mt-4 mt-lg-0">
           <h4>Hundarna</h4>
-          <button class="btn btn-info">Lägg till ny hund +</button>
+          <router-link to="/ny-hund" class="btn btn-info mb-4">Lägg till ny hund +</router-link>
+          <DogPreview :dog="dog" v-for="dog in dogs" :key="dog._id" />
         </b-col>
       </b-row>
     </div>
@@ -102,10 +103,11 @@
 
 <script>
 import { Trash2Icon } from "vue-feather-icons";
+import DogPreview from "../components/DogPreview";
 import axios from "axios";
 export default {
   name: "admin",
-  components: { Trash2Icon },
+  components: { Trash2Icon, DogPreview },
   data() {
     return {
       form: {
@@ -117,18 +119,20 @@ export default {
         page: 1,
         currAmtArticles: ""
       },
-      articles: []
+      articles: [],
+      dogs: []
     };
   },
   computed: {
     loggedIn() {
-      return this.$store.state.loggedIn
+      return this.$store.state.loggedIn;
     }
   },
   async beforeMount() {
-    await this.$store.dispatch('checkIfLoggedIn');
+    await this.$store.dispatch("checkIfLoggedIn");
     if (this.loggedIn) {
       this.getArticles();
+      this.getDogs();
     }
   },
   methods: {
@@ -150,7 +154,11 @@ export default {
       this.getArticles();
     },
     async deleteArticle(article) {
-      if (confirm(`Är du säker på att du vill ta bort inlägget "${article.headline}"? Detta är permanent och går inte att ångra.`)) {
+      if (
+        confirm(
+          `Är du säker på att du vill ta bort inlägget "${article.headline}"? Detta är permanent och går inte att ångra.`
+        )
+      ) {
         await axios({
           method: "DELETE",
           url: `/api/articles/${article._id}`
@@ -159,6 +167,13 @@ export default {
         return;
       }
       this.getArticles();
+    },
+    async getDogs() {
+      let dogs = await axios({
+        method: "GET",
+        url: "/api/dogs"
+      });
+      this.dogs = dogs.data;
     },
     async getArticles(page = this.state.page) {
       let articles = await axios({
@@ -173,7 +188,7 @@ export default {
         method: "DELETE",
         url: "/api/login"
       });
-      this.$store.dispatch('checkIfLoggedIn');
+      this.$store.dispatch("checkIfLoggedIn");
     },
     async submitLogin(e) {
       e.preventDefault();
@@ -187,7 +202,7 @@ export default {
         }
       });
       this.state.loading = false;
-      this.$store.dispatch('checkIfLoggedIn');
+      this.$store.dispatch("checkIfLoggedIn");
     }
   }
 };

@@ -8,7 +8,18 @@
 
 <script>
 export default {
-  name: "dog"
+  name: "dog",
+  components: {
+    
+  },
+  beforeMount() {
+
+  },
+  data() {
+    return {
+      dogs: []
+    }
+  }
 };
 </script>
 <style lang="scss" scoped>

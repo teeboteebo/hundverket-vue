@@ -4,11 +4,12 @@ import Home from "../views/Home.vue"
 import About from "../views/About.vue"
 import Gallery from "../views/Gallery.vue"
 import Dogs from "../views/Dogs.vue"
-import Dog from "../views/Dog.vue"
+import DogPage from "../views/DogPage.vue"
 import Admin from "../views/Admin.vue"
 import NewArticle from "../views/NewArticle.vue"
 import ArticlePage from "../views/ArticlePage.vue"
 import MissingPage from "../views/MissingPage.vue"
+import NewDog from "../views/NewDog.vue"
 
 Vue.use(VueRouter)
 
@@ -31,7 +32,12 @@ const routes = [
   {
     path: "/hundarna/:dog",
     name: "hund",
-    component: Dog
+    component: DogPage
+  },
+  {
+    path: "/ny-hund",
+    name: "nyhund",
+    component: NewDog
   },
   {
     path: "/om-oss",
@@ -45,11 +51,6 @@ const routes = [
   },
   {
     path: "*",
-    name: "missingpage",
-    component: MissingPage
-  },
-  {
-    path: "/api*",
     name: "missingpage",
     component: MissingPage
   },
