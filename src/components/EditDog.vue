@@ -143,6 +143,8 @@ export default {
   },
   beforeMount() {
     if (this.edit) {
+      console.log(this.dog);
+      
       this.setDefaultValues();
     } else {
       return;
@@ -159,19 +161,8 @@ export default {
         id: this.form.links.length
       });
     },
-    removeHTML() {
-      let body = this.editorData;
-      let result = body.replace(/(<([^>]+)>)/gi, "");
-      result = result.replace(/[&]nbsp[;]/gi, " "); // removes all occurrences of &nbsp;
-      return result;
-    },
     setDefaultValues() {
-      this.form = {
-        headline: this.dog.headline,
-        image: this.dog.image,
-        summary: this.dog.summary
-      };
-      this.editorData = this.dog.body;
+      this.form = this.dog
     },
     canceldog(e) {
       e.preventDefault();

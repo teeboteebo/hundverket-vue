@@ -11,8 +11,8 @@ router.get('/api/articles', async (req, res) => {
 })
 router.get('/api/articles/published', async (req, res) => {
   const amount = parseInt(req.query.amount)
-  const allArticles = await Article.find({"published": true}).sort({ "created": -1 }).limit(amount).exec()
-  const totalArticles = (await Article.find({"published": true}).sort({ "created": -1 }).exec()).length
+  const allArticles = await Article.find({"published": true}).sort({ "publishedAt": -1 }).limit(amount).exec()
+  const totalArticles = (await Article.find({"published": true}).sort({ "publishedAt": -1 }).exec()).length
   
   res.json({allArticles, total: totalArticles})
 })

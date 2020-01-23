@@ -40,8 +40,8 @@ const routes = [
     component: NewDog
   },
   {
-    path: "/om-oss",
-    name: "om oss",
+    path: "/om-mig",
+    name: "om mig",
     component: About,
   },
   {

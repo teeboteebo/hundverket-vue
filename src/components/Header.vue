@@ -80,14 +80,9 @@ export default {
           ]
         },
         {
-          to: "/kontakt",
-          name: "Kontakt",
+          to: "/om-mig",
+          name: "Om mig",
           id: 4
-        },
-        {
-          to: "/om-oss",
-          name: "Om oss",
-          id: 5
         }
       ]
     };

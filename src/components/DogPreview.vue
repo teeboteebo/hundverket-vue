@@ -12,11 +12,11 @@
         <p>Född: {{new Date(dog.dateOfBirth).toLocaleString('sv-SE', {year: 'numeric', month: 'numeric'})}}</p>
       </b-col>
     </b-row>
-    <b-row v-for="link in dog.links" :key="link.id" class="p-2 border-bottom">
-      <b-col cols="2">
+    <b-row v-for="link in dog.links" :key="link.id" class="p-2 dog-link">
+      <b-col cols="2" class="pb-3 border-bottom d-flex align-items-center">
         <img :src="link.image" alt="länkbild" />
       </b-col>
-      <b-col cols="10">
+      <b-col cols="10" class="d-flex align-items-center pb-3 border-bottom">
         <p class="font-weight-bold">{{link.name}}</p>
       </b-col>
     </b-row>
@@ -45,12 +45,23 @@ export default {
   &:active {
     box-shadow: inset 0 0 5px 1px rgba(0, 0, 0, 0.1);
   }
+  figure {
+    width: 100%;
+    max-height: 200px;
+    overflow: hidden;
+  }
   img {
     width: 100%;
     height: auto;
   }
   p {
     margin: 0;
+  }
+  .dog-link {
+    min-height: 75px;
+    img {
+      width: 70%;
+    }
   }
 }
 </style>

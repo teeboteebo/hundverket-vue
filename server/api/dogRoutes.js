@@ -8,9 +8,9 @@ router.get('/api/dogs', async (req, res) => {
   res.json(allDogs)
 })
 
-// Find one with id
-router.get('/api/dogs/:id', async (req, res) => {
-  const dogToFind = await Dog.findById(req.params.id)
+// Find one with link
+router.get('/api/dogs/:link', async (req, res) => {
+  const dogToFind = await Dog.findOne({link:req.params.link})
   res.json(dogToFind)
 })
 

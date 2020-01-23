@@ -61,7 +61,7 @@
         <b-col cols="12" lg="6" class="mt-4 mt-lg-0">
           <h4>Hundarna</h4>
           <router-link to="/ny-hund" class="btn btn-info mb-4">Lägg till ny hund +</router-link>
-          <DogPreview :dog="dog" v-for="dog in dogs" :key="dog._id" />
+          <DogPreview :dog="dog" v-for="dog in dogs" :key="dog._id" class="mb-4" />
         </b-col>
       </b-row>
     </div>
