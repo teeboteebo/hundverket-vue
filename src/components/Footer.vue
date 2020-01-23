@@ -9,7 +9,7 @@
             </a>
           </li>
           <li>
-            <a href="mailto:elisabeth.asplund63@gmail.com">
+            <a href="mailto:elisabeth.asplund.63@gmail.com">
               <MailIcon size="16" />&nbsp;Skicka mail
             </a>
           </li>
@@ -42,7 +42,7 @@
         </section>
       </div>
     </div>
-    <p class="copy-claim">Denna sida lagrar ingen information.</p>
+    <p class="copy-claim">Organisationsnummer: SE631024352901 | Innehar F-skatt</p>
   </div>
 </template>
 <script >
