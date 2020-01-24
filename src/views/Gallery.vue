@@ -38,7 +38,6 @@ export default {
       url: "/api/photos"
     })
     this.images = response.data;
-    console.log(this.images);
   },
   methods: {
     redirectUserTo(url) {      

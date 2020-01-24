@@ -62,8 +62,6 @@ export default {
     },
     toggleEdit(event, dog) {
       if (dog) {
-        console.log("dog: ", dog);
-
         this.state.edit = false;
         this.state.dog = dog;
       } else {

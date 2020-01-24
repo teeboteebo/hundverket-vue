@@ -150,13 +150,8 @@ export default {
       }
     };
   },
-  updated() {
-    console.log("editDog: ", this.dog);
-  },
   beforeMount() {
     if (this.edit) {
-      console.log("editDog: ", this.dog);
-
       this.setDefaultValues();
     } else {
       return;
@@ -164,7 +159,6 @@ export default {
   },
   methods: {
     removeLink(id) {
-      console.log(id);
       this.form.links.splice(id, 1);
     },
     addLink(e) {
@@ -178,8 +172,6 @@ export default {
     },
     setDefaultValues() {
       this.form = this.dog;
-      console.log("form: ", this.form);
-      console.log("dogProps: ", this.form);
       if (this.dog.dateOfBirth.includes("T")) {
         this.form.dateOfBirth = this.dog.dateOfBirth.slice(
           0,
@@ -193,9 +185,6 @@ export default {
     },
     async saveDog(e) {
       e.preventDefault();
-      console.log(this.form.name);
-
-      // this.form.link = this.form.name.toLowerCase();
       await axios({
         method: "PUT",
         url: `/api/dogs/${this.dog._id}`,
@@ -211,7 +200,6 @@ export default {
     },
     async submitAndPublishDog(e) {
       e.preventDefault();
-      console.log(this.form);
       this.form.link = this.form.name.toLowerCase();
       let response = await axios({
         method: "POST",
