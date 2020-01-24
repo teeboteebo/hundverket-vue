@@ -15,6 +15,7 @@ const loginRoutes = require('./server/api/loginRoutes')
 const userRoutes = require('./server/api/userRoutes')
 const articleRoutes = require('./server/api/articleRoutes')
 const dogRoutes = require('./server/api/dogRoutes')
+const photoRoutes = require('./server/api/photoRoutes')
 
 connectToDb()
 
@@ -36,7 +37,7 @@ app.use(
   }),
 )
 
-app.use(loginRoutes, userRoutes, articleRoutes, dogRoutes)
+app.use(loginRoutes, userRoutes, articleRoutes, dogRoutes, photoRoutes)
 
 
 //here we are configuring dist to serve app files
