@@ -28,7 +28,7 @@ import axios from "axios";
 import MissingPage from "./MissingPage";
 import EditDog from "../components/EditDog";
 import Dog from "../components/Dog";
-import Loader from "../components/Loader"
+import Loader from "../components/Loader";
 export default {
   name: "dogPage",
   components: {
@@ -62,11 +62,11 @@ export default {
     },
     toggleEdit(event, dog) {
       if (dog) {
-        console.log('dog: ', dog);
-        
+        console.log("dog: ", dog);
+
         this.state.edit = false;
         this.state.dog = dog;
-      } else {        
+      } else {
         this.state.edit = !this.state.edit;
       }
     }
@@ -79,9 +79,12 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.dog-page {
-  margin: 0 auto;
-  .content-wrapper {
+@import "@/scss/bootstrap";
+.dog-wrapper {
+  .edit-btn {
+    @include media-breakpoint-down(md) {
+      width: 100%;
+    }
   }
 }
 </style>

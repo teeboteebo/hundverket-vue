@@ -63,7 +63,7 @@
               <p>Länk {{index + 1}}</p>
               <button
                 @click="(e)=>{e.preventDefault(); removeLink(index)}"
-                class="btn btn-danger"
+                class="btn btn-danger my-2"
               >Ta bort länk {{index + 1}}</button>
               <label for="linkNamn">Namn</label>
               <input
@@ -107,7 +107,7 @@
               />
             </div>
           </div>
-          <button @click="addLink" class="ml-lg-3 mt-2 btn btn-info">Lägg till länk +</button>
+          <button @click="addLink" class="ml-lg-3 mt-2 mb-4 btn btn-info">Lägg till länk +</button>
         </div>
       </b-col>
     </b-row>
@@ -120,7 +120,7 @@
     </div>
     <div v-else class="input-grp">
       <div class="continue-btns">
-        <button @click="saveDog" class="btn btn-info ml-2 mt-3">Spara redigering</button>
+        <button @click="saveDog" class="btn btn-info ml-lg-2 mt-3">Spara redigering</button>
       </div>
     </div>
   </form>
