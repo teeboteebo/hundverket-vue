@@ -66,7 +66,7 @@ export default {
         
         this.state.edit = false;
         this.state.dog = dog;
-      } else {
+      } else {        
         this.state.edit = !this.state.edit;
       }
     }

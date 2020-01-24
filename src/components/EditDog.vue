@@ -11,10 +11,17 @@
       </b-col>
       <b-col cols="12" md="6">
         <div class="input-grp">
-          <label for="Bild">Bild *</label>
-          <input name="Bild" type="text" class="input-field" v-model="form.image" />
+          <label for="Bild">Bild</label>
+          <input
+            placeholder="Ange URL *"
+            name="Bild"
+            type="text"
+            class="input-field"
+            v-model="form.image"
+          />
           <p
             :style="{fontStyle: 'italic', opacity: .8, fontSize: '.8rem'}"
+            v-if="!form.image"
           >* Högerklicka på önskad bild och välj "kopiera bildadress". Klistra in länken i fältet ovan.</p>
 
           <img v-if="form.image" :src="form.image" class="mb-4" width="150px" />
@@ -47,37 +54,47 @@
         <div class="input-grp links">
           <label for="Links">Länkar</label>
 
-          <div class="ml-3 mb-4 border-bottom" v-for="link in form.links" :key="link.id">
+          <div
+            class="ml-3 mb-4 border-bottom"
+            v-for="(link, index) in form.links"
+            :key="'link_' + index"
+          >
             <div class="input-grp">
-              <p>Länk {{link.id + 1}}</p>
+              <p>Länk {{index + 1}}</p>
+              <button
+                @click="(e)=>{e.preventDefault(); removeLink(index)}"
+                class="btn btn-danger"
+              >Ta bort länk {{index + 1}}</button>
               <label for="linkNamn">Namn</label>
               <input
                 name="linkNamn"
                 type="text"
                 class="input-field"
-                v-model="form.links[link.id].name"
+                v-model="form.links[index].name"
               />
               <label for="linkLink">Länk</label>
               <input
                 name="linkLink"
                 type="text"
                 class="input-field"
-                v-model="form.links[link.id].link"
+                v-model="form.links[index].link"
               />
-              <label for="linkBild">Bild *</label>
+              <label for="linkBild">Bild</label>
               <input
+                placeholder="Ange URL *"
                 name="linkBild"
                 type="text"
                 class="input-field"
-                v-model="form.links[link.id].image"
+                v-model="form.links[index].image"
               />
               <p
                 :style="{fontStyle: 'italic', opacity: .8, fontSize: '.8rem'}"
+                v-if="!form.links[index].image"
               >* Högerklicka på önskad bild och välj "kopiera bildadress". Klistra in länken i fältet ovan.</p>
 
               <img
-                v-if="form.links[link.id].image"
-                :src="form.links[link.id].image"
+                v-if="form.links[index].image"
+                :src="form.links[index].image"
                 class="mb-4"
                 width="150px"
               />
@@ -86,11 +103,11 @@
                 name="linkInfo"
                 rows="3"
                 class="input-field"
-                v-model="form.links[link.id].info"
+                v-model="form.links[index].info"
               />
             </div>
           </div>
-          <button @click="addLink" class="ml-3 mt-2 btn btn-info">Lägg till länk +</button>
+          <button @click="addLink" class="ml-lg-3 mt-2 btn btn-info">Lägg till länk +</button>
         </div>
       </b-col>
     </b-row>
@@ -98,16 +115,12 @@
     <div v-if="!edit" class="input-grp">
       <button @click="cancelDog" class="btn btn-danger mt-3">Avbryt</button>
       <div class="continue-btns">
-        <button @click="submitDog" class="btn btn-info mt-3">Spara</button>
-        <button
-          @click="submitAndPublishDog"
-          class="btn btn-primary ml-lg-3 mt-3"
-        >Spara och publicera</button>
+        <button @click="submitAndPublishDog" class="btn btn-primary ml-lg-3 mt-3">Spara</button>
       </div>
     </div>
     <div v-else class="input-grp">
       <div class="continue-btns">
-        <button @click="saveDog" class="btn btn-info mt-3">Spara</button>
+        <button @click="saveDog" class="btn btn-info ml-2 mt-3">Spara redigering</button>
       </div>
     </div>
   </form>
@@ -117,9 +130,6 @@ import axios from "axios";
 export default {
   name: "editDog",
   props: ["toggleEdit", "dog", "edit"],
-  updated() {
-    console.log(this.form.links[this.form.links.length - 1]);
-  },
   data() {
     return {
       form: {
@@ -134,23 +144,29 @@ export default {
             name: "",
             image: "",
             info: "",
-            id: 0
           }
         ],
         dateOfBirth: ""
       }
     };
   },
+  updated() {
+    console.log("editDog: ", this.dog);
+  },
   beforeMount() {
     if (this.edit) {
-      console.log(this.dog);
-      
+      console.log("editDog: ", this.dog);
+
       this.setDefaultValues();
     } else {
       return;
     }
   },
   methods: {
+    removeLink(id) {
+      console.log(id);
+      this.form.links.splice(id, 1);
+    },
     addLink(e) {
       e.preventDefault();
       this.form.links.push({
@@ -158,63 +174,45 @@ export default {
         name: "",
         image: "",
         info: "",
-        id: this.form.links.length
       });
     },
     setDefaultValues() {
-      this.form = this.dog
+      this.form = this.dog;
+      console.log("form: ", this.form);
+      console.log("dogProps: ", this.form);
+      if (this.dog.dateOfBirth.includes("T")) {
+        this.form.dateOfBirth = this.dog.dateOfBirth.slice(
+          0,
+          this.dog.dateOfBirth.indexOf("T")
+        ); // remove time from date in order to match the expected value of input type="date" - Expected: YYYY-MM-DD
+      }
     },
-    canceldog(e) {
+    cancelDog(e) {
       e.preventDefault();
       this.$router.go(-1);
     },
     async saveDog(e) {
       e.preventDefault();
-      const { headline, image } = this.form;
-      const summary = this.removeHTML();
-      let link = this.form.headline.replace(/\s+/g, "-").toLowerCase(); //convert headline into a link-friendly format
+      console.log(this.form.name);
+
+      // this.form.link = this.form.name.toLowerCase();
       await axios({
         method: "PUT",
-        url: `/api/dogs/${this.dog.link}/edit`,
-        data: {
-          headline,
-          link,
-          image,
-          summary,
-          body: this.editorData
-        }
+        url: `/api/dogs/${this.dog._id}`,
+        data: this.form
       });
-      history.pushState({}, null, "/hundarna/" + encodeURIComponent(link));
-      const dog = {
-        headline,
-        link,
-        image,
-        body: this.editorData
-      };
+      history.pushState(
+        {},
+        null,
+        "/hundarna/" + encodeURIComponent(this.form.link)
+      );
+      const dog = this.form;
       this.toggleEdit("toggleEdit", dog);
     },
-    async submitDog(e) {
-      const { headline, image } = this.form;
-      const summary = this.removeHTML();
-      e.preventDefault();
-      let link = this.form.headline.replace(/\s+/g, "-").toLowerCase(); //convert headline into a link-friendly format
-      await axios({
-        method: "POST",
-        url: "/api/dogs",
-        data: {
-          link,
-          headline,
-          image,
-          summary,
-          body: this.editorData
-        }
-      });
-      this.$router.push("/admin");
-    },
     async submitAndPublishDog(e) {
-      console.log(this.form);
-      this.form.link = this.form.name.toLowerCase()
       e.preventDefault();
+      console.log(this.form);
+      this.form.link = this.form.name.toLowerCase();
       let response = await axios({
         method: "POST",
         url: "/api/dogs",
@@ -243,8 +241,8 @@ export default {
       border: 1px solid rgba(0, 0, 0, 0.1);
     }
     .continue-btns {
-      display: inline-block;
-      float: right;
+      // display: inline-block;
+      text-align: right;
       @include media-breakpoint-down(md) {
         width: 100%;
       }

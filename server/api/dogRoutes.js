@@ -14,6 +14,14 @@ router.get('/api/dogs/:link', async (req, res) => {
   res.json(dogToFind)
 })
 
+router.put('/api/dogs/:id', async (req, res) => {
+  const dogToFind = await Dog.findById(req.params.id)
+  let updatedDog = { ...req.body }
+  await Object.assign(dogToFind, updatedDog)
+  await dogToFind.save()
+  res.json(dogToFind)
+})
+
 router.post('/api/dogs', async (req, res) => {
   console.log(req.body);
   let dog = new Dog({
