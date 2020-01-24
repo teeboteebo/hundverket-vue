@@ -1,10 +1,10 @@
 const mongoose = require('mongoose')
-const { connectionString } = require('./connectionString')
+const { dbAPI } = require('./variables')
 
 const connectToDb = () => {
   // connect to db for testing
   mongoose
-    .connect(process.env.API_KEY || connectionString, { useNewUrlParser: true, useUnifiedTopology: true })
+    .connect(dbAPI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log("MongoDB connected"))
     .catch(err => console.log(err))
   global.db = mongoose.connection
