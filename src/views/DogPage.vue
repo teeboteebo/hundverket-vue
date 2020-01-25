@@ -52,7 +52,7 @@ export default {
   data() {
     return {
       state: {
-        loading: false,
+        loading: true,
         dog: {},
         edit: false
       }
