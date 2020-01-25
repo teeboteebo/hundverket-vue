@@ -6,15 +6,21 @@ const router = express.Router()
 //paginated with 5
 router.get('/api/articles', async (req, res) => {
   const page = req.query.page * 5 - 5 // page 1 = skip 0, page 2 = skip 5...
-  const allArticles = await Article.find().sort({ "created": -1 }).skip(page).limit(5).exec()
-  res.json(allArticles)
+  const sort = req.query.sort
+  const createdSorted = await Article.find().sort({ "created": -1 }).skip(page).limit(5).exec()
+  const publishedSorted = await Article.find().sort({ "published": -1, "publishedAt": -1 }).skip(page).limit(5).exec()
+  const first = publishedSorted[0].headline
+  if (sort === 'created') {
+    res.json({articles: createdSorted, first})
+  } else if (sort === 'publishedAt') {
+    res.json({articles: publishedSorted, first})
+  }
 })
 router.get('/api/articles/published', async (req, res) => {
   const amount = parseInt(req.query.amount)
-  const allArticles = await Article.find({"published": true}).sort({ "publishedAt": -1 }).limit(amount).exec()
-  const totalArticles = (await Article.find({"published": true}).sort({ "publishedAt": -1 }).exec()).length
-  
-  res.json({allArticles, total: totalArticles})
+  const allArticles = await Article.find({ "published": true }).sort({ "publishedAt": -1 }).limit(amount).exec()
+  const totalArticles = (await Article.find({ "published": true }).sort({ "publishedAt": -1 }).exec()).length
+  res.json({ allArticles, total: totalArticles })
 })
 router.get('/api/articles/:link', async (req, res) => {
   const articleToFind = await Article.findOne({ link: req.params.link })
@@ -52,9 +58,9 @@ router.put('/api/articles/:link/edit', async (req, res) => {
   articleToSave.headline = req.body.headline
   articleToSave.image = req.body.image
   articleToSave.body = req.body.body,
-  articleToSave.summary = req.body.summary,
-  articleToSave.link = req.body.link
-  
+    articleToSave.summary = req.body.summary,
+    articleToSave.link = req.body.link
+
   try {
     await articleToSave.save()
     console.log('Edited: ', articleToSave);
@@ -68,13 +74,13 @@ router.put('/api/articles/:link/edit', async (req, res) => {
 router.post('/api/articles', async (req, res) => {
   console.log(req.body);
   let image = req.body.image
-  if(!req.body.image){
+  if (!req.body.image) {
     image = 'https://via.placeholder.com/300x300?text=Artikelbild'
   }
   let article = new Article({
-    ...req.body, 
+    ...req.body,
     image,
-    created: new Date().getTime(), 
+    created: new Date().getTime(),
     edited: new Date().getTime()
   })
   try {
@@ -92,10 +98,10 @@ router.delete('/api/articles/:id', async (req, res) => {
   const articleToDelete = await Article.findById(req.params.id)
   try {
     articleToDelete.delete()
-    res.json({success:'deleted'})
+    res.json({ success: 'deleted' })
   }
-  catch(err){
-    res.json({error:'could not delete'})
+  catch (err) {
+    res.json({ error: 'could not delete' })
   }
 })
 
