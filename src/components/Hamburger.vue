@@ -15,15 +15,18 @@
       <!-- Overlay content -->
       <ul class="overlay-content">
         <li v-for="link in links" :key="link.id">
-          <span @click="linksInOverlay(link.to)" class="overlayLink">{{link.name}}</span>
-          <span v-if="link.subLinks">
+          <span @click="linksInOverlay(link.to)" class="overlayLink">{{
+            link.name
+          }}</span>
+          <div v-if="link.subLinks">
             <span
               v-for="subLink in link.subLinks"
               :key="subLink.id"
               @click="linksInOverlay(subLink.to)"
               class="overlay-subLink"
-            >- {{subLink.name}}</span>
-          </span>
+              >- {{ subLink.name }}</span
+            >
+          </div>
         </li>
       </ul>
     </div>
@@ -72,6 +75,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "@/scss/bootstrap";
 #navigation {
   z-index: 10000;
   height: 35px;
@@ -176,38 +180,46 @@ div.hamburger.open span.strips::after {
   text-align: left; /* Centered text/links */
   margin: 30px auto 0; /* 30px top margin to avoid conflict with the close button on smaller screens */
 }
-/* The navigation links inside the overlay */
-.overlay-subLink {
-  padding-left: 25px !important;
-  font-size: 32px !important;
-}
-.overlay > ul > li > .overlayLink, .overlay-subLink {
-  padding: 8px;
-  text-decoration: none;
-  font-size: 36px;
-  color: #aaa;
-  display: block; /* Display block instead of inline */
-  transition: 0.15s; /* Transition effects on hover (color) */
-  &:hover {
-    -webkit-animation: pulse 2s;
-    animation: pulse 2s;
-    cursor: pointer !important;
+
+.overlay {
+  ul {
+    list-style: none;
   }
-}
-.overlay ul {
-  list-style: none;
-}
-/* When you mouse over the navigation links, change their color */
-.overlay > ul > li > .overlayLink:hover,
-.overlay > ul > li > .overlayLink:focus,
-.overlay-subLink:focus,
-.overlay-subLink:hover {
-  color: #f1f1f1;
-}
-/* When the height of the screen is less than 450 pixels, change the font-size of the links and position the close button again, so they don't overlap */
-@media screen and (max-height: 450px) {
-  .overlay > ul > li > .overlayLink, .overlay-subLink {
-    font-size: 20px;
+  .overlayLink,
+  .overlay-subLink {
+    font-weight: bold;
+    font-family: "Source Sans Pro", sans-serif;
+    padding: 8px;
+    text-decoration: none;
+    color: #aaa;
+    display: block; /* Display block instead of inline */
+    transition: 0.15s; /* Transition effects on hover (color) */
+    &:hover,
+    &:focus {
+      -webkit-animation: pulse 2s;
+      animation: pulse 2s;
+      cursor: pointer !important;
+      color: #f1f1f1;
+    }
+    font-size: 24px;
+    @media screen and (orientation: landscape) {
+      font-size: 14px;
+    }
+    @include media-breakpoint-up(sm) {
+      font-size: 26px;
+      @media screen and (orientation: landscape) {
+        font-size: 14px;
+      }
+    }
+    @include media-breakpoint-up(md) {
+      font-size: 36px;
+      @media screen and (orientation: landscape) {
+        font-size: 14px;
+      }
+    }
+  }
+  .overlay-subLink {
+    margin-left: 0.5rem;
   }
 }
 </style>
