@@ -5,7 +5,7 @@ let dogSchema = new Schema({
   link: { type: String, unique: true },
   breed: { type: String },
   name: { type: String },
-  desc: { type: String },
+  desc: { type: Array },
   image: { type: String },
   links: { type: Array },
   dateOfBirth: { type: Date },

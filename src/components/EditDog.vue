@@ -13,7 +13,7 @@
         <div class="input-grp">
           <label for="Bild">Bild</label>
           <input
-            placeholder="Ange URL *"
+            placeholder="Ange URL *, för bäst resultat väl en kvadratisk bild"
             name="Bild"
             type="text"
             class="input-field"
@@ -45,26 +45,33 @@
 
     <b-row class="mt-2">
       <b-col cols="12">
-        <div class="input-grp">
-          <label for="Innehåll">Innehåll</label>
-          <textarea name="Innehåll" rows="6" class="input-field" v-model="form.desc" />
+        <p class="font-weight-bold">Innehåll</p>
+        <div
+          class="input-grp p-2 border rounded mt-2"
+          v-for="(desc, index) in form.desc"
+          :style="{ boxShadow: '0 0 5px 1px rgba(0, 0, 0, 0.1)'}"
+          :key="'paragraph_' + index"
+        >
+          <label class="font-weight-normal" :for="'Stycke'+index">Stycke {{index + 1}}</label>
+          <textarea :name="'Stycke'+index" rows="3" class="input-field" v-model="form.desc[index]" />
+          <button
+            class="btn btn-outline-danger mb-2"
+            @click="(e)=>{e.preventDefault(); removeParagraph(index)}"
+          >Ta bort stycke {{index + 1}}</button>
         </div>
+        <button @click="addParagraph" class="mt-3 mb-5 btn btn-outline-info">Nytt stycke +</button>
       </b-col>
       <b-col cols="12">
         <div class="input-grp links">
-          <label for="Links">Länkar</label>
-
+          <p class="font-weight-bold">Länkar</p>
           <div
-            class="ml-3 mb-4 border-bottom"
+            class="p-2 border rounded mt-2"
             v-for="(link, index) in form.links"
             :key="'link_' + index"
+            :style="{ boxShadow: '0 0 5px 1px rgba(0, 0, 0, 0.1)'}"
           >
             <div class="input-grp">
               <p>Länk {{index + 1}}</p>
-              <button
-                @click="(e)=>{e.preventDefault(); removeLink(index)}"
-                class="btn btn-danger my-2"
-              >Ta bort länk {{index + 1}}</button>
               <label for="linkNamn">Namn</label>
               <input
                 name="linkNamn"
@@ -105,9 +112,13 @@
                 class="input-field"
                 v-model="form.links[index].info"
               />
+              <button
+                @click="(e)=>{e.preventDefault(); removeLink(index)}"
+                class="btn btn-outline-danger my-2"
+              >Ta bort länk {{index + 1}}</button>
             </div>
           </div>
-          <button @click="addLink" class="ml-lg-3 mt-2 mb-4 btn btn-info">Lägg till länk +</button>
+          <button @click="addLink" class="mt-3 mb-4 btn btn-outline-info">Ny länk +</button>
         </div>
       </b-col>
     </b-row>
@@ -121,6 +132,10 @@
     <div v-else class="input-grp">
       <div class="continue-btns">
         <button @click="saveDog" class="btn btn-info ml-lg-2 mt-3">Spara redigering</button>
+        <p
+          v-if="error"
+          class="text-danger mt-2"
+        >Något gick fel vid sparningen, ladda om sidan och försök igen</p>
       </div>
     </div>
   </form>
@@ -136,18 +151,19 @@ export default {
         link: "",
         breed: "",
         name: "",
-        desc: "",
+        desc: [""],
         image: "",
         links: [
           {
             link: "",
             name: "",
             image: "",
-            info: "",
+            info: ""
           }
         ],
         dateOfBirth: ""
-      }
+      },
+      error: ""
     };
   },
   beforeMount() {
@@ -158,6 +174,13 @@ export default {
     }
   },
   methods: {
+    removeParagraph(id) {
+      this.form.desc.splice(id, 1);
+    },
+    addParagraph(e) {
+      e.preventDefault();
+      this.form.desc.push("");
+    },
     removeLink(id) {
       this.form.links.splice(id, 1);
     },
@@ -167,7 +190,7 @@ export default {
         link: "",
         name: "",
         image: "",
-        info: "",
+        info: ""
       });
     },
     setDefaultValues() {
@@ -185,17 +208,22 @@ export default {
     },
     async saveDog(e) {
       e.preventDefault();
-      await axios({
+      const response = await axios({
         method: "PUT",
         url: `/api/dogs/${this.dog._id}`,
         data: this.form
       });
+
+      if (response.data.error) {
+        this.error = true;
+        return;
+      }
       history.pushState(
         {},
         null,
         "/hundarna/" + encodeURIComponent(this.form.link)
       );
-      const dog = this.form;
+      const dog = response.data;
       this.toggleEdit("toggleEdit", dog);
     },
     async submitAndPublishDog(e) {
@@ -231,14 +259,14 @@ export default {
     .continue-btns {
       // display: inline-block;
       text-align: right;
-      @include media-breakpoint-down(md) {
-        width: 100%;
-      }
+      // @include media-breakpoint-down(md) {
+      //   width: 100%;
+      // }
     }
-    button {
-      @include media-breakpoint-down(md) {
-        width: 100%;
-      }
+  }
+  button {
+    @include media-breakpoint-down(md) {
+      width: 100%;
     }
   }
 }
