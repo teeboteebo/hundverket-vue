@@ -63,7 +63,7 @@ export default {
     margin-top: 70px;
     display: flex;
     .wrapper {
-      flex:1;
+      flex: 1;
       padding-top: 3rem;
       padding-bottom: 3rem;
       background-color: #fff;
@@ -74,7 +74,12 @@ export default {
     color: #fff;
     background-color: var(--primary);
   }
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: "Source Sans Pro", sans-serif;
   }
 }

@@ -12,15 +12,25 @@
           <div
             @click="redirectUserTo(image.link)"
             class="img-wrapper"
-            :style="{backgroundImage: `url(${image.images[0].source})`}"
+            :style="{ backgroundImage: `url(${image.images[0].source})` }"
             v-for="image in images"
-            :key="'img_'+ image.images[0].source"
+            :key="'img_' + image.images[0].source"
           >
             <div class="img-overlay">
-              <p
-                class="img-time"
-              >{{new Date(image.created_time).toLocaleString('sv-SE',{year: 'numeric', month: 'numeric', day:'numeric'})}}<span class="float-right font-weight-normal">Gå till bild <ExternalLinkIcon size="16" /></span></p>
-              <p class="img-name">{{image.name ? image.name : 'Bildtext saknas'}}</p>
+              <p class="img-time">
+                {{
+                  new Date(image.created_time).toLocaleString("sv-SE", {
+                    year: "numeric",
+                    month: "numeric",
+                    day: "numeric"
+                  })
+                }}<span class="float-right font-weight-normal"
+                  >Gå till bild <ExternalLinkIcon size="16"
+                /></span>
+              </p>
+              <p class="img-name">
+                {{ image.name ? image.name : "Bildtext saknas" }}
+              </p>
             </div>
           </div>
         </div>
@@ -30,7 +40,7 @@
 </template>
 
 <script>
-import { ExternalLinkIcon } from "vue-feather-icons"
+import { ExternalLinkIcon } from "vue-feather-icons";
 import axios from "axios";
 export default {
   name: "gallery",
@@ -46,16 +56,15 @@ export default {
     const response = await axios({
       method: "GET",
       url: "/api/photos"
-    })
+    });
     this.images = response.data;
   },
   methods: {
-    redirectUserTo(url) {      
+    redirectUserTo(url) {
       var win = window.open(url, "_blank");
       win.focus();
     }
   }
-
 };
 </script>
 <style lang="scss" scoped>

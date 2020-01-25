@@ -6,7 +6,13 @@
         <b-col cols="12" lg="8" class="articles">
           <h2 class="mb-3">Senaste inläggen</h2>
           <ArticleLister :articles="state.articles" />
-          <button v-if="state.amount < state.totalAmtArticles" @click="loadMoreArticles" class="btn btn-outline btn-outline-primary">Visa fler</button>
+          <button
+            v-if="state.amount < state.totalAmtArticles"
+            @click="loadMoreArticles"
+            class="btn btn-outline btn-outline-primary"
+          >
+            Visa fler
+          </button>
         </b-col>
         <b-col cols="12" lg="4" class="text-center mt-5 mt-lg-0">
           <div
@@ -16,7 +22,7 @@
             data-width="500px"
             data-height="800px"
             data-small-header="true"
-            data-adapt-container-width="true"
+            data-adapt-container-width="false"
             data-hide-cover="false"
             data-show-facepile="true"
           >
@@ -24,7 +30,9 @@
               cite="https://www.facebook.com/hundverketiskane/"
               class="fb-xfbml-parse-ignore"
             >
-              <a href="https://www.facebook.com/hundverketiskane/">Hundverket i Skåne</a>
+              <a href="https://www.facebook.com/hundverketiskane/"
+                >Hundverket i Skåne</a
+              >
             </blockquote>
           </div>
         </b-col>
@@ -64,7 +72,7 @@ export default {
         url: `/api/articles/published?amount=${amount}`
       });
       this.state.articles = articles.data.allArticles; // Requested articles
-      this.state.totalAmtArticles = articles.data.total; // Amount of articles possible to get      
+      this.state.totalAmtArticles = articles.data.total; // Amount of articles possible to get
     }
   }
 };

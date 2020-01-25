@@ -3,14 +3,24 @@
     <ul>
       <li v-for="link in links" :key="link.id">
         <div v-if="link.subLinks" class="nav-item nav-dropdown">
-          <router-link class="dd-item r-link" :to="link.to">{{link.name}}</router-link>
+          <router-link class="dd-item r-link" :to="link.to">{{
+            link.name
+          }}</router-link>
           <ul class="dd-menu">
-            <li class="dd-item" v-for="subLink in link.subLinks" v-bind:key="subLink.id">
-              <router-link class="r-link" :to="subLink.to">{{subLink.name}}</router-link>
+            <li
+              class="dd-item"
+              v-for="subLink in link.subLinks"
+              v-bind:key="subLink.id"
+            >
+              <router-link class="r-link" :to="subLink.to">{{
+                subLink.name
+              }}</router-link>
             </li>
           </ul>
         </div>
-        <router-link v-else class="nav-item r-link" :to="link.to">{{link.name}}</router-link>
+        <router-link v-else class="nav-item r-link" :to="link.to">{{
+          link.name
+        }}</router-link>
       </li>
     </ul>
   </nav>

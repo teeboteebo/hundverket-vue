@@ -14,15 +14,15 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    async checkIfLoggedIn(context) {      
+    async checkIfLoggedIn(context) {
       let loggedIn = await axios({
-        method: 'get',
-        url: '/api/login'
-      })
-      if (loggedIn.data._id){
-        context.commit('toggleLogin', loggedIn.data)
+        method: "get",
+        url: "/api/login"
+      });
+      if (loggedIn.data._id) {
+        context.commit("toggleLogin", loggedIn.data);
       } else {
-        context.commit('toggleLogin', false)
+        context.commit("toggleLogin", false);
       }
     }
   },

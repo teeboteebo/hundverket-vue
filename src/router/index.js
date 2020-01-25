@@ -1,17 +1,17 @@
-import Vue from "vue"
-import VueRouter from "vue-router"
-import Home from "../views/Home.vue"
-import About from "../views/About.vue"
-import Gallery from "../views/Gallery.vue"
-import Dogs from "../views/Dogs.vue"
-import DogPage from "../views/DogPage.vue"
-import Admin from "../views/Admin.vue"
-import NewArticle from "../views/NewArticle.vue"
-import ArticlePage from "../views/ArticlePage.vue"
-import MissingPage from "../views/MissingPage.vue"
-import NewDog from "../views/NewDog.vue"
+import Vue from "vue";
+import VueRouter from "vue-router";
+import Home from "../views/Home.vue";
+import About from "../views/About.vue";
+import Gallery from "../views/Gallery.vue";
+import Dogs from "../views/Dogs.vue";
+import DogPage from "../views/DogPage.vue";
+import Admin from "../views/Admin.vue";
+import NewArticle from "../views/NewArticle.vue";
+import ArticlePage from "../views/ArticlePage.vue";
+import MissingPage from "../views/MissingPage.vue";
+import NewDog from "../views/NewDog.vue";
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
 const routes = [
   {
@@ -22,7 +22,7 @@ const routes = [
   {
     path: "/galleri",
     name: "galleri",
-    component: Gallery,
+    component: Gallery
   },
   {
     path: "/hundarna",
@@ -42,12 +42,12 @@ const routes = [
   {
     path: "/om-mig",
     name: "om mig",
-    component: About,
+    component: About
   },
   {
     path: "/admin",
     name: "admin",
-    component: Admin,
+    component: Admin
   },
   {
     path: "*",
@@ -62,14 +62,14 @@ const routes = [
   {
     path: "/inlagg/:link",
     name: "inlagg",
-    component: ArticlePage,
-  },
-]
+    component: ArticlePage
+  }
+];
 
 const router = new VueRouter({
   mode: "history",
   base: process.env.BASE_URL,
   routes
-})
+});
 
 export default router;

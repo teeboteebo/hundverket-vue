@@ -15,8 +15,8 @@
 </template>
 
 <script>
-import axios from 'axios'
-import DogPreview from "../components/DogPreview"
+import axios from "axios";
+import DogPreview from "../components/DogPreview";
 export default {
   name: "dogs",
   components: {
@@ -25,24 +25,22 @@ export default {
   data() {
     return {
       state: {
-        dogs: ''
+        dogs: ""
       }
-    }
+    };
   },
   beforeMount() {
-    this.getDogs()
+    this.getDogs();
   },
   methods: {
     async getDogs() {
       const dogs = await axios({
-        method: 'GET',
-        url: '/api/dogs'
-      })
-      this.state.dogs = dogs.data
+        method: "GET",
+        url: "/api/dogs"
+      });
+      this.state.dogs = dogs.data;
     }
   }
 };
 </script>
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>

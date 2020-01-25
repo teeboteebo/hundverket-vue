@@ -1,6 +1,10 @@
 <template>
   <b-container fluid class="article-lister">
-    <ArticlePreview v-for="article in articles" :key="article._id" :article="article"/>
+    <ArticlePreview
+      v-for="article in articles"
+      :key="article._id"
+      :article="article"
+    />
   </b-container>
 </template>
 <script>
@@ -11,11 +15,10 @@ export default {
   props: ["articles"],
   components: {
     ArticlePreview
-  },
+  }
 };
 </script>
 <style lang="scss" scoped>
 .article-lister {
-  
 }
 </style>

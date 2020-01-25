@@ -1,8 +1,16 @@
 <template>
   <Loader v-if="state.loading" />
-  <b-container v-else-if="state.dog._id" class="dog-wrapper bg-white py-5 p-lg-5">
+  <b-container
+    v-else-if="state.dog._id"
+    class="dog-wrapper bg-white py-5 p-lg-5"
+  >
     <Dog v-if="!state.edit" :dog="this.state.dog" />
-    <EditDog v-else-if="state.edit" :edit="state.edit" :toggleEdit="toggleEdit" :dog="state.dog" />
+    <EditDog
+      v-else-if="state.edit"
+      :edit="state.edit"
+      :toggleEdit="toggleEdit"
+      :dog="state.dog"
+    />
     <div v-if="loggedIn" class="text-right">
       <button
         @click="toggleEdit"

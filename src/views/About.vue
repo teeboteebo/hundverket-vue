@@ -15,8 +15,16 @@
         />
       </b-col>
       <b-col cols="12" md="5" xl="4" class="mt-4 mt-md-0 info-section">
-        <p>Jag är legitimerad svensk- och engelsklärare samt specialpedagog. Till vardags arbetar jag på Gymnasieskolan Vipan i Lund på Introduktionsprogrammen.</p>
-        <p>Hundarna är med mig varje dag i skolan. Vi har olika uppdrag som t.ex. läshund eller att motivera till rörelse eller helt enkelt att komma till skolan.</p>
+        <p>
+          Jag är legitimerad svensk- och engelsklärare samt specialpedagog. Till
+          vardags arbetar jag på Gymnasieskolan Vipan i Lund på
+          Introduktionsprogrammen.
+        </p>
+        <p>
+          Hundarna är med mig varje dag i skolan. Vi har olika uppdrag som t.ex.
+          läshund eller att motivera till rörelse eller helt enkelt att komma
+          till skolan.
+        </p>
         <p>När tillfälle ges tar jag även externa uppdrag.</p>
         <div class="border border-primary rounded">
           <ul>
@@ -39,7 +47,9 @@
                 <FacebookIcon size="16" />&nbsp;Hundverket i Skåne
               </a>
             </li>
-            <li class="mb-0">Organisationsnummer: SE631024352901, innehar F-skatt</li>
+            <li class="mb-0">
+              Organisationsnummer: SE631024352901, innehar F-skatt
+            </li>
           </ul>
         </div>
       </b-col>
@@ -48,11 +58,7 @@
 </template>
 
 <script>
-import {
-  PhoneIcon,
-  FacebookIcon,
-  MailIcon
-} from "vue-feather-icons";
+import { PhoneIcon, FacebookIcon, MailIcon } from "vue-feather-icons";
 export default {
   name: "about",
   components: {
@@ -74,7 +80,7 @@ export default {
     text-align: left;
     list-style-type: none;
     li {
-      margin-bottom: .5rem;
+      margin-bottom: 0.5rem;
     }
     a {
       text-decoration: none;

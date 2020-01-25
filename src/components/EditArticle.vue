@@ -6,20 +6,36 @@
       <b-col cols="12" md="6">
         <div class="input-grp">
           <label for="Rubrik">Rubrik</label>
-          <input required name="Rubrik" type="text" class="input-field" v-model="form.headline" />
+          <input
+            required
+            name="Rubrik"
+            type="text"
+            class="input-field"
+            v-model="form.headline"
+          />
         </div>
       </b-col>
       <b-col cols="12" md="6">
         <div class="input-grp">
           <label for="Bild">Bild</label>
-          <input required name="Bild" placeholder="Ange URL *" type="text" class="input-field" v-model="form.image" />
+          <input
+            required
+            name="Bild"
+            placeholder="Ange URL *"
+            type="text"
+            class="input-field"
+            v-model="form.image"
+          />
           <p
-            :style="{fontStyle: 'italic', opacity: .8, fontSize: '.8rem'}"
+            :style="{ fontStyle: 'italic', opacity: 0.8, fontSize: '.8rem' }"
             v-if="!form.image"
-          >* Högerklicka på önskad bild och välj "kopiera bildadress". Klistra in länken i fältet ovan.</p>
+          >
+            * Högerklicka på önskad bild och välj "kopiera bildadress". Klistra
+            in länken i fältet ovan.
+          </p>
           <!-- <b-form-file v-model="form.image" class plain></b-form-file>
           <button @click="form.image = null" class="btn btn-danger mt-2 max-w-50">Återställ bild</button>-->
-          <img v-if="form.image" :src="form.image" class="mb-4" width="150px"/> 
+          <img v-if="form.image" :src="form.image" class="mb-4" width="150px" />
         </div>
       </b-col>
     </b-row>
@@ -28,7 +44,7 @@
         <div class="input-grp">
           <label for="Innehåll">Innehåll</label>
           <ckeditor
-            :style="{minHeight: '500px'}"
+            :style="{ minHeight: '500px' }"
             name="Innehåll"
             :editor="editor"
             v-model="editorData"
@@ -44,7 +60,9 @@
         <button
           @click="submitAndPublishArticle"
           class="btn btn-primary ml-lg-3 mt-3"
-        >Spara och publicera</button>
+        >
+          Spara och publicera
+        </button>
       </div>
     </div>
     <div v-else class="input-grp">

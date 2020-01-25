@@ -2,11 +2,14 @@
   <Loader v-if="state.loading" />
   <div v-else-if="this.state.article._id" class="article-wrapper">
     <div class="article-image-bg">
-      <div class="bg-blur-image" :style="{backgroundImage: `url(${state.article.image})`}" />
+      <div
+        class="bg-blur-image"
+        :style="{ backgroundImage: `url(${state.article.image})` }"
+      />
       <div class="image-holder">
         <b-container
           class="article-image"
-          :style="{backgroundImage: `url(${state.article.image})`}"
+          :style="{ backgroundImage: `url(${state.article.image})` }"
         />
         <!-- <img class="article-image" :src="state.article.image" alt="Inläggsbild" /> -->
       </div>

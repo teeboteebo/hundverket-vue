@@ -7,9 +7,17 @@
         </figure>
       </b-col>
       <b-col cols="8" class="border-bottom">
-        <h3>{{dog.name}}</h3>
-        <p>Ras: {{dog.breed}}</p>
-        <p>Född: {{new Date(dog.dateOfBirth).toLocaleString('sv-SE', {year: 'numeric', month: 'numeric'})}}</p>
+        <h3>{{ dog.name }}</h3>
+        <p>Ras: {{ dog.breed }}</p>
+        <p>
+          Född:
+          {{
+            new Date(dog.dateOfBirth).toLocaleString("sv-SE", {
+              year: "numeric",
+              month: "numeric"
+            })
+          }}
+        </p>
       </b-col>
     </b-row>
     <b-row v-for="link in dog.links" :key="link.id" class="p-2 dog-link">
@@ -17,7 +25,7 @@
         <img :src="link.image" alt="länkbild" />
       </b-col>
       <b-col cols="10" class="pb-3 border-bottom d-flex align-items-center">
-        <p class="font-weight-bold">{{link.name}}</p>
+        <p class="font-weight-bold">{{ link.name }}</p>
       </b-col>
     </b-row>
   </b-container>

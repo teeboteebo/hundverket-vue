@@ -5,11 +5,12 @@
         <h2>Sidan saknas :(</h2>
         <p class="mt-4">
           Den angivna adressen finns inte: <br />
-          <span class="url">{{pathname}}</span>
+          <span class="url">{{ pathname }}</span>
         </p>
         <p class="mt-4">
           Klicka
-          <router-link to="/" class="text-secondary">här</router-link>&nbsp;för att komma tillbaka till start.
+          <router-link to="/" class="text-secondary">här</router-link>&nbsp;för
+          att komma tillbaka till start.
         </p>
       </b-col>
     </b-row>
@@ -32,7 +33,7 @@ export default {
   .url {
     font-style: italic;
     font-weight: bold;
-    color: blue
+    color: blue;
   }
 }
 </style>
