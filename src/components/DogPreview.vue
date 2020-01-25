@@ -16,7 +16,7 @@
       <b-col cols="2" class="pb-3 border-bottom d-flex align-items-center">
         <img :src="link.image" alt="länkbild" />
       </b-col>
-      <b-col cols="10" class="d-flex align-items-center pb-3 border-bottom">
+      <b-col cols="10" class="pb-3 border-bottom d-flex align-items-center">
         <p class="font-weight-bold">{{link.name}}</p>
       </b-col>
     </b-row>
@@ -38,8 +38,10 @@ export default {
   background-color: #fff;
   border-radius: 4px;
   border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.1);
+
   &:hover {
-    box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.2);
     cursor: pointer;
   }
   &:active {
