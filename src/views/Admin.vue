@@ -3,16 +3,25 @@
     <div v-if="loggedIn" class="admin-page">
       <h3>Kontrollpanel</h3>
       <p>Inloggad som: {{ loggedIn.email }}</p>
-      <button @click="logout" small class="btn btn-danger mb-5">Logga ut</button>
+      <button @click="logout" small class="btn btn-danger mb-5">
+        Logga ut
+      </button>
       <b-row>
         <b-col cols="12" lg="6">
           <h4>Inlägg</h4>
-          <router-link to="/nytt-inlagg" class="btn btn-info mb-4">Skapa nytt inlägg +</router-link>
+          <router-link to="/nytt-inlagg" class="btn btn-info mb-4"
+            >Skapa nytt inlägg +</router-link
+          >
           <p class="border rounded p-1">
             Artikeln som visas överst:
-            <span class="font-weight-bold">{{state.currentTop}}</span>
-          </p>Sortera efter:
-          <select @change="sortArticles" v-model="state.sortBy" class="ml-2 btn btn-info p-1">
+            <span class="font-weight-bold">{{ state.currentTop }}</span>
+          </p>
+          Sortera efter:
+          <select
+            @change="sortArticles"
+            v-model="state.sortBy"
+            class="ml-2 btn btn-info p-1"
+          >
             <option value="created" selected>Datum skapat</option>
             <option value="publishedAt">Datum publicerat</option>
           </select>
@@ -21,12 +30,18 @@
               <th width="100%">Titel</th>
               <th nowrap>Publicerad</th>
             </tr>
-            <tr v-for="article in articles" :key="article._id" class="article-preview">
+            <tr
+              v-for="article in articles"
+              :key="article._id"
+              class="article-preview"
+            >
               <td
                 @click="openArticle(article.link)"
                 class="article-headline"
                 width="100%"
-              >{{ article.headline }}</td>
+              >
+                {{ article.headline }}
+              </td>
               <td nowrap class="text-right">
                 <label class="switch">
                   <input
@@ -37,7 +52,10 @@
                   <span class="slider round"></span>
                 </label>
                 <div class="w-100 text-right">
-                  <span @click="deleteArticle(article)" class="delete-btn bg-danger">
+                  <span
+                    @click="deleteArticle(article)"
+                    class="delete-btn bg-danger"
+                  >
                     <Trash2Icon size="14" />
                   </span>
                 </div>
@@ -46,58 +64,70 @@
                 <span>
                   Skapad:
                   {{
-                  new Date(article.created).toLocaleString("sv-SE", {
-                  year: "numeric",
-                  month: "numeric",
-                  day: "numeric"
-                  })
+                    new Date(article.created).toLocaleString("sv-SE", {
+                      year: "numeric",
+                      month: "numeric",
+                      day: "numeric"
+                    })
                   }}
                   , Redigerad:
                   {{
-                  new Date(article.edited).toLocaleString("sv-SE", {
-                  year: "numeric",
-                  month: "numeric",
-                  day: "numeric",
-                  hour: "numeric",
-                  minute: "numeric"
-                  })
+                    new Date(article.edited).toLocaleString("sv-SE", {
+                      year: "numeric",
+                      month: "numeric",
+                      day: "numeric",
+                      hour: "numeric",
+                      minute: "numeric"
+                    })
                   }}
-                  <span
-                    v-if="article.published"
-                  >
+                  <span v-if="article.published">
                     , Publicerad:
-                    {{ new Date(article.publishedAt).toLocaleString("sv-SE", {
-                    year: "numeric",
-                    month: "numeric",
-                    day: "numeric",
-                    hour: "numeric",
-                    minute: "numeric"
-                    })}}
+                    {{
+                      new Date(article.publishedAt).toLocaleString("sv-SE", {
+                        year: "numeric",
+                        month: "numeric",
+                        day: "numeric",
+                        hour: "numeric",
+                        minute: "numeric"
+                      })
+                    }}
                   </span>
                 </span>
               </div>
             </tr>
           </table>
+
           <div class="pagination">
             <div>
               <button
                 :disabled="this.state.page === 1 ? true : false"
                 @click="decPage"
                 class="btn btn-info"
-              >&lt; Bakåt</button>
+              >
+                &lt; Bakåt
+              </button>
               <span class="page">sida {{ this.state.page }}</span>
               <button
                 :disabled="this.state.currAmtArticles < 5 ? true : false"
                 @click="incPage"
                 class="btn btn-info"
-              >Framåt &gt;</button>
+              >
+                Framåt &gt;
+              </button>
             </div>
           </div>
         </b-col>
         <b-col cols="12" lg="6" class="mt-4 mt-lg-0">
           <h4>Hundarna</h4>
-          <router-link to="/ny-hund" class="btn btn-info mb-4">Lägg till ny hund +</router-link>
-          <DogPreview :dog="dog" v-for="dog in dogs" :key="dog._id" class="mb-4" />
+          <router-link to="/ny-hund" class="btn btn-info mb-4"
+            >Lägg till ny hund +</router-link
+          >
+          <DogPreview
+            :dog="dog"
+            v-for="dog in dogs"
+            :key="dog._id"
+            class="mb-4"
+          />
         </b-col>
       </b-row>
     </div>
@@ -264,7 +294,7 @@ export default {
       font-size: 8px;
     }
     table {
-      margin-top: .5rem;
+      margin-top: 0.5rem;
       padding: 100px;
       width: 100%;
       border-bottom: 1px solid rgba(0, 0, 0, 0.1);

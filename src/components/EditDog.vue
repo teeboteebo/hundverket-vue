@@ -3,16 +3,21 @@
     <h2 v-if="edit" class="text-center">Redigera hund</h2>
     <h2 v-else class="text-center">Ny hund</h2>
     <div v-if="edit" class="mt-3 mb-5 text-right">
-    <button @click="deleteDog" class="btn btn-danger">
-      Ta bort {{form.name}}
-      <Trash2Icon size="16" class="mb-1" />
-    </button>
+      <button @click="deleteDog" class="btn btn-danger">
+        Ta bort {{ form.name }}
+        <Trash2Icon size="16" class="mb-1" />
+      </button>
     </div>
     <b-row class="mt-5">
       <b-col cols="12" md="6">
         <div class="input-grp">
           <label for="Namn">Namn</label>
-          <input name="Namn" type="text" class="input-field" v-model="form.name" />
+          <input
+            name="Namn"
+            type="text"
+            class="input-field"
+            v-model="form.name"
+          />
         </div>
       </b-col>
       <b-col cols="12" md="6">
@@ -25,7 +30,10 @@
             class="input-field"
             v-model="form.image"
           />
-          <p :style="{ fontStyle: 'italic', opacity: 0.8, fontSize: '.8rem' }" v-if="!form.image">
+          <p
+            :style="{ fontStyle: 'italic', opacity: 0.8, fontSize: '.8rem' }"
+            v-if="!form.image"
+          >
             * Högerklicka på önskad bild och välj "kopiera bildadress". Klistra
             in länken i fältet ovan.
           </p>
@@ -38,13 +46,23 @@
       <b-col cols="12" md="6">
         <div class="input-grp">
           <label for="Ras">Ras</label>
-          <input name="Ras" type="text" class="input-field" v-model="form.breed" />
+          <input
+            name="Ras"
+            type="text"
+            class="input-field"
+            v-model="form.breed"
+          />
         </div>
       </b-col>
       <b-col cols="12" md="6">
         <div class="input-grp">
           <label for="Födelsedatum">Födelsedatum</label>
-          <input name="Födelsedatum" type="date" class="input-field" v-model="form.dateOfBirth" />
+          <input
+            name="Födelsedatum"
+            type="date"
+            class="input-field"
+            v-model="form.dateOfBirth"
+          />
         </div>
       </b-col>
     </b-row>
@@ -58,7 +76,9 @@
           :style="{ boxShadow: '0 0 5px 1px rgba(0, 0, 0, 0.1)' }"
           :key="'paragraph_' + index"
         >
-          <label class="font-weight-normal" :for="'Stycke' + index">Stycke {{ index + 1 }}</label>
+          <label class="font-weight-normal" :for="'Stycke' + index"
+            >Stycke {{ index + 1 }}</label
+          >
           <textarea
             :name="'Stycke' + index"
             rows="3"
@@ -73,9 +93,13 @@
                 removeParagraph(index);
               }
             "
-          >Ta bort stycke {{ index + 1 }}</button>
+          >
+            Ta bort stycke {{ index + 1 }}
+          </button>
         </div>
-        <button @click="addParagraph" class="mt-3 mb-5 btn btn-outline-info">Nytt stycke +</button>
+        <button @click="addParagraph" class="mt-3 mb-5 btn btn-outline-info">
+          Nytt stycke +
+        </button>
       </b-col>
       <b-col cols="12">
         <div class="input-grp links">
@@ -143,10 +167,14 @@
                   }
                 "
                 class="btn btn-outline-danger my-2"
-              >Ta bort länk {{ index + 1 }}</button>
+              >
+                Ta bort länk {{ index + 1 }}
+              </button>
             </div>
           </div>
-          <button @click="addLink" class="mt-3 mb-4 btn btn-outline-info">Ny länk +</button>
+          <button @click="addLink" class="mt-3 mb-4 btn btn-outline-info">
+            Ny länk +
+          </button>
         </div>
       </b-col>
     </b-row>
@@ -154,16 +182,22 @@
     <div v-if="!edit" class="input-grp">
       <button @click="cancelDog" class="btn btn-danger mt-3">Avbryt</button>
       <div class="continue-btns">
-        <button @click="submitAndPublishDog" class="btn btn-primary ml-lg-3 mt-3">Spara</button>
+        <button
+          @click="submitAndPublishDog"
+          class="btn btn-primary ml-lg-3 mt-3"
+        >
+          Spara
+        </button>
       </div>
     </div>
     <div v-else class="input-grp">
       <div class="continue-btns">
-        <button @click="saveDog" class="btn btn-info ml-lg-2 mt-3">Spara redigering</button>
-        <p
-          v-if="error"
-          class="text-danger mt-2"
-        >Något gick fel vid sparningen, ladda om sidan och försök igen</p>
+        <button @click="saveDog" class="btn btn-info ml-lg-2 mt-3">
+          Spara redigering
+        </button>
+        <p v-if="error" class="text-danger mt-2">
+          Något gick fel vid sparningen, ladda om sidan och försök igen
+        </p>
       </div>
     </div>
   </form>
