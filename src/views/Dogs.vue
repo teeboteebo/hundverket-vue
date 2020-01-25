@@ -1,6 +1,12 @@
 <template>
   <b-container class="dogs wrapper">
     <b-row>
+      <b-col cols="12">
+        <h2 class="text-center">Hundarna</h2>
+        <div class="border-bottom mb-3" />
+      </b-col>
+    </b-row>
+    <b-row>
       <b-col cols="6" v-for="dog in state.dogs" :key="dog._id">
         <DogPreview :dog="dog" />
       </b-col>
