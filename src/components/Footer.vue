@@ -28,8 +28,9 @@
                 href="https://www.google.com/maps/place/Kalkemadsvägen+9,+233+38+Svedala/"
                 target="_blank"
                 rel="noopener noreferrer"
+                :style="{whiteSpace: 'nowrap'}"
               >
-                <MapPinIcon size="16" />&nbsp;Kalkemadsvägen 9, 233 38 Svedala
+                <MapPinIcon size="16" />&nbsp;Kalkemadsvägen 9,<br /> 233 38 Svedala
               </a>
             </address>
           </li>
@@ -42,7 +43,7 @@
         </section>
       </div>
     </div>
-    <p class="copy-claim">Organisationsnummer: SE631024352901 | Innehar F-skatt</p>
+    <p class="copy-claim">Organisationsnummer: SE631024352901<br />Innehar F-skatt</p>
   </div>
 </template>
 <script >
