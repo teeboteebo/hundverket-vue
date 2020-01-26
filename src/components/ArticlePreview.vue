@@ -1,5 +1,5 @@
 <template>
-  <b-row class="article-preview mb-4" @click="openArticle(article.link)">
+  <b-row class="article-preview" @click="openArticle(article.link)">
     <b-col cols="12" md="4" class="p-2 image-holder">
       <div
         class="preview-image"

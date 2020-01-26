@@ -4,6 +4,7 @@
       v-for="article in articles"
       :key="article._id"
       :article="article"
+      class="mb-4"
     />
   </b-container>
 </template>

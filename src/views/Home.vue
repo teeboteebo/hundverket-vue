@@ -4,8 +4,17 @@
     <b-container class="wrapper">
       <b-row>
         <b-col cols="12" lg="8" class="articles">
+          <Article class="" :articleData="state.articles[0]" />
+          <img
+            alt="inläggsbild"
+            :src="state.articles[0].image"
+            class="first-article-img border rounded mb-3"
+          /><br />
+          <router-link :to="state.articles[0].link">Gå till inlägg</router-link>
+          <div class="border-bottom my-4" />
           <h2 class="mb-3">Senaste inläggen</h2>
-          <ArticleLister :articles="state.articles" />
+
+          <ArticleLister :articles="state.articles.slice(1)" />
           <button
             v-if="state.amount < state.totalAmtArticles"
             @click="loadMoreArticles"
@@ -19,10 +28,10 @@
             class="fb-page"
             data-href="https://www.facebook.com/hundverketiskane/"
             data-tabs="timeline"
-            data-width="500px"
+            data-width="350px"
             data-height="800px"
             data-small-header="true"
-            data-adapt-container-width="false"
+            data-adapt-container-width="true"
             data-hide-cover="false"
             data-show-facepile="true"
           >
@@ -44,10 +53,12 @@
 <script>
 import axios from "axios";
 import ArticleLister from "../components/ArticleLister";
+import Article from "../components/Article";
 export default {
   name: "home",
   components: {
-    ArticleLister
+    ArticleLister,
+    Article
   },
   data() {
     return {
@@ -89,6 +100,13 @@ export default {
   .articles {
     @include media-breakpoint-up(lg) {
       border-right: 1px solid rgba(0, 0, 0, 0.1);
+    }
+    .first-article-img {
+      width: 100%;
+      height: auto;
+      @include media-breakpoint-up(md) {
+        width: 50%;
+      }
     }
   }
 }
