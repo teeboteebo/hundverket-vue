@@ -4,6 +4,7 @@
     <b-container class="wrapper">
       <b-row>
         <b-col cols="12" lg="8" class="articles">
+          <div v-if="state.articles[0]" class="border-bottom mb-4 pb-4">
           <Article class="" :articleData="state.articles[0]" />
           <img
             alt="inläggsbild"
@@ -11,7 +12,8 @@
             class="first-article-img border rounded mb-3"
           /><br />
           <router-link :to="state.articles[0].link">Gå till inlägg</router-link>
-          <div class="border-bottom my-4" />
+          
+          </div>
           <h2 class="mb-3">Senaste inläggen</h2>
 
           <ArticleLister :articles="state.articles.slice(1)" />
