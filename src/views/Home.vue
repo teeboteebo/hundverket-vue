@@ -5,14 +5,14 @@
       <b-row>
         <b-col cols="12" lg="8" class="articles">
           <div v-if="state.articles[0]" class="border-bottom mb-4 pb-4">
-          <Article class="" :articleData="state.articles[0]" />
-          <img
-            alt="inläggsbild"
-            :src="state.articles[0].image"
-            class="first-article-img border rounded mb-3"
-          /><br />
-          <router-link :to="state.articles[0].link">Gå till inlägg</router-link>
-          
+            <Article :articleData="state.articles[0]" />
+            <img
+              alt="inläggsbild"
+              :src="state.articles[0].image"
+              class="first-article-img border rounded mb-3"
+            />
+            <br />
+            <router-link :to="'/inlagg/' + state.articles[0].link">Gå till inlägg</router-link>
           </div>
           <h2 class="mb-3">Senaste inläggen</h2>
 
@@ -21,9 +21,7 @@
             v-if="state.amount < state.totalAmtArticles"
             @click="loadMoreArticles"
             class="btn btn-outline btn-outline-primary"
-          >
-            Visa fler
-          </button>
+          >Visa fler</button>
         </b-col>
         <b-col cols="12" lg="4" class="text-center mt-5 mt-lg-0">
           <div
@@ -41,9 +39,7 @@
               cite="https://www.facebook.com/hundverketiskane/"
               class="fb-xfbml-parse-ignore"
             >
-              <a href="https://www.facebook.com/hundverketiskane/"
-                >Hundverket i Skåne</a
-              >
+              <a href="https://www.facebook.com/hundverketiskane/">Hundverket i Skåne</a>
             </blockquote>
           </div>
         </b-col>

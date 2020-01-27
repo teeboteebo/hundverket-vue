@@ -30,12 +30,12 @@
           <ul>
             <li>
               <a href="tel:+4600705875878">
-                <PhoneIcon size="16" />&nbsp;0705 - 875 878
+                <PhoneIcon size="16" class="mb-1" />&nbsp;0705 - 875 878
               </a>
             </li>
             <li>
               <a href="mailto:elisabeth.asplund.63@gmail.com">
-                <MailIcon size="16" />&nbsp;Skicka mail
+                <MailIcon size="16" class="mb-1" />&nbsp;Skicka mail
               </a>
             </li>
             <li>
@@ -44,7 +44,7 @@
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <FacebookIcon size="16" />&nbsp;Hundverket i Skåne
+                <FacebookIcon size="16" class="mb-1" />&nbsp;Hundverket i Skåne
               </a>
             </li>
             <li class="mb-0">
