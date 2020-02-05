@@ -128,8 +128,8 @@ export default {
   .copy-claim {
     font-size: 0.8rem;
     margin: 0 auto;
-    position: absolute;
-    bottom: 10px;
+    // position: absolute;
+    // bottom: 10px;
     display: block;
     width: 100%;
     text-align: center;

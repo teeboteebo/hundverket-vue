@@ -7,7 +7,7 @@
       </b-col>
     </b-row>
     <b-row>
-      <b-col cols="6" v-for="dog in state.dogs" :key="dog._id">
+      <b-col cols="12" md="6" class="mt-4 mt-md-0" v-for="dog in state.dogs" :key="dog._id">
         <DogPreview :dog="dog" />
       </b-col>
     </b-row>
