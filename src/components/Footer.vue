@@ -43,7 +43,7 @@
               src="@/assets/elisabeth.jpg"
               alt="Elisabeth med Ebbe"
             />
-            <img class="logo-img" src="@/assets/logo.png" />
+            <img class="logo-img" alt="Hundverket logo" src="@/assets/logo.png" />
           </router-link>
         </section>
       </div>

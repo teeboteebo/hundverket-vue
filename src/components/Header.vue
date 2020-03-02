@@ -3,8 +3,8 @@
     <b-row class="w-100 no-gutters">
       <b-col cols="8" lg="4" class="text-left">
         <div class="logo-holder d-inline-block">
-          <router-link to="/">
-            <img class="logo-img" src="@/assets/logo-dog.png" />
+          <router-link to="/" aria-label="Tillbaka till start">
+            <img class="logo-img" alt="Hudverket logo" src="@/assets/logo-dog.png" />
           </router-link>
         </div>
       </b-col>
