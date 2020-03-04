@@ -40,10 +40,10 @@
           <router-link to="/">
             <img
               class="elisabeth-img"
-              src="@/assets/elisabeth.jpg"
+              src="/images/elisabeth.jpg"
               alt="Elisabeth med Ebbe"
             />
-            <img class="logo-img" alt="Hundverket logo" src="@/assets/logo.png" />
+            <h1 class="footer-header">Hundverket i Skåne</h1>
           </router-link>
         </section>
       </div>
@@ -118,6 +118,16 @@ export default {
         .elisabeth-img {
           border-radius: 1000px;
           margin-bottom: 10px;
+        }
+        .footer-header {
+          width: 120px;
+          color: #fff;
+          font-weight: bold;
+          font-size: 1.5rem;
+          text-align: center;
+          float: right;
+          margin-top: -8px;
+          margin-right: 5px;
         }
         .logo-img {
           filter: brightness(0) invert(1);

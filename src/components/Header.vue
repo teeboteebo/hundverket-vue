@@ -4,7 +4,7 @@
       <b-col cols="8" lg="4" class="text-left">
         <div class="logo-holder d-inline-block">
           <router-link to="/" aria-label="Tillbaka till start">
-            <img class="logo-img" alt="Hudverket logo" src="@/assets/logo-dog.png" />
+            <img class="logo-img" alt="Hudverket logo" src="/images/logo-dog.png" />
           </router-link>
         </div>
       </b-col>
