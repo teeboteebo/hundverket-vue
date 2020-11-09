@@ -17,7 +17,7 @@ export default new Vuex.Store({
     async checkIfLoggedIn(context) {
       let loggedIn = await axios({
         method: "get",
-        url: "/api/login"
+        url: "https://api.hundverketiskane.se/api/login"
       });
       if (loggedIn.data._id) {
         context.commit("toggleLogin", loggedIn.data);

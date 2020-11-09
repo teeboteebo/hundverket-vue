@@ -78,7 +78,7 @@ export default {
     async getArticles(amount = this.state.amount) {
       let articles = await axios({
         method: "GET",
-        url: `/api/articles/published?amount=${amount}`
+        url: `https://api.hundverketiskane.se/api/articles/published?amount=${amount}`
       });
       this.state.articles = articles.data.allArticles; // Requested articles
       this.state.totalAmtArticles = articles.data.total; // Amount of articles possible to get

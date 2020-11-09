@@ -125,7 +125,7 @@ export default {
       let link = this.form.headline.replace(/\s+/g, "-").toLowerCase(); //convert headline into a link-friendly format
       await axios({
         method: "PUT",
-        url: `/api/articles/${this.article.link}/edit`,
+        url: `https://api.hundverketiskane.se/api/articles/${this.article.link}/edit`,
         data: {
           headline,
           link,
@@ -150,7 +150,7 @@ export default {
       let link = this.form.headline.replace(/\s+/g, "-").toLowerCase(); //convert headline into a link-friendly format
       await axios({
         method: "POST",
-        url: "/api/articles",
+        url: "https://api.hundverketiskane.se/api/articles",
         data: {
           link,
           headline,
@@ -168,7 +168,7 @@ export default {
       let link = this.form.headline.replace(/\s+/g, "-").toLowerCase(); //convert headline into a link-friendly format
       let response = await axios({
         method: "POST",
-        url: "/api/articles",
+        url: "https://api.hundverketiskane.se/api/articles",
         data: {
           link,
           headline,
