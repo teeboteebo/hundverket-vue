@@ -13,7 +13,6 @@ import BootstrapVue from "bootstrap-vue";
 import CKEditor from "@ckeditor/ckeditor5-vue";
 // axios.defaults.baseURL = "http://localhost:9000"
 axios.defaults.baseURL = "https://hundverket.herokuapp.com"
-console.log(axios.defaults);
 axios.defaults.headers['Access-Control-Allow-Origin'] = "*"
 Vue.config.productionTip = false;
 Vue.use(BootstrapVue);
