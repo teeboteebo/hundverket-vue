@@ -63,7 +63,7 @@ export default {
       this.state.loading = true;
       const dog = await axios({
         method: "GET",
-        url: `https://api.hundverketiskane.se/api/dogs/${this.$route.params.dog}`
+        url: `/api/dogs/${this.$route.params.dog}`
       });
       this.state.loading = false;
       this.state.dog = dog.data;

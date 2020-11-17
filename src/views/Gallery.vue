@@ -55,7 +55,7 @@ export default {
   async beforeMount() {
     const response = await axios({
       method: "GET",
-      url: "https://api.hundverketiskane.se/api/photos"
+      url: "/api/photos"
     });
     this.images = response.data;
   },

@@ -252,7 +252,7 @@ export default {
       ) {
         const response = await axios({
           method: "DELETE",
-          url: `https://api.hundverketiskane.se/api/dogs/${this.dog._id}`
+          url: `/api/dogs/${this.dog._id}`
         });
         if (!response.data.error) {
           this.$router.push("/admin");
@@ -297,7 +297,7 @@ export default {
       e.preventDefault();
       const response = await axios({
         method: "PUT",
-        url: `https://api.hundverketiskane.se/api/dogs/${this.dog._id}`,
+        url: `/api/dogs/${this.dog._id}`,
         data: this.form
       });
 
@@ -318,7 +318,7 @@ export default {
       this.form.link = this.form.name.toLowerCase();
       let response = await axios({
         method: "POST",
-        url: "https://api.hundverketiskane.se/api/dogs",
+        url: "/api/dogs",
         data: this.form
       });
       this.$router.push("/hundarna/" + response.data.link);

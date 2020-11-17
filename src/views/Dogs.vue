@@ -36,7 +36,7 @@ export default {
     async getDogs() {
       const dogs = await axios({
         method: "GET",
-        url: "https://api.hundverketiskane.se/api/dogs"
+        url: "/api/dogs"
       });
       this.state.dogs = dogs.data;
     }

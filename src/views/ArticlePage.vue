@@ -65,14 +65,14 @@ export default {
     if (this.loggedIn) {
       const article = await axios({
         method: "GET",
-        url: `https://api.hundverketiskane.se/api/articles/${this.$route.params.link}`
+        url: `/api/articles/${this.$route.params.link}`
       });
       this.state.article = article.data;
       this.state.loading = false;
     } else {
       const article = await axios({
         method: "GET",
-        url: `https://api.hundverketiskane.se/api/articles/published/${this.$route.params.link}`
+        url: `/api/articles/published/${this.$route.params.link}`
       });
       this.state.article = article.data;
       this.state.loading = false;

@@ -215,7 +215,7 @@ export default {
     async togglePublish(link) {
       await axios({
         method: "PUT",
-        url: `https://api.hundverketiskane.se/api/articles/${link}/toggle`
+        url: `/api/articles/${link}/toggle`
       });
       this.getArticles();
     },
@@ -235,7 +235,7 @@ export default {
       ) {
         await axios({
           method: "DELETE",
-          url: `https://api.hundverketiskane.se/api/articles/${article._id}`
+          url: `/api/articles/${article._id}`
         });
       } else {
         return;
@@ -245,14 +245,14 @@ export default {
     async getDogs() {
       let dogs = await axios({
         method: "GET",
-        url: "https://api.hundverketiskane.se/api/dogs"
+        url: "/api/dogs"
       });
       this.dogs = dogs.data;
     },
     async getArticles(page = this.state.page, sort = this.state.sortBy) {
       let articles = await axios({
         method: "GET",
-        url: `https://api.hundverketiskane.se/api/articles?page=${page}&sort=${sort}`
+        url: `/api/articles?page=${page}&sort=${sort}`
       });
       this.articles = articles.data.articles;
       this.state.currAmtArticles = articles.data.articles.length;
@@ -261,7 +261,7 @@ export default {
     async logout() {
       await axios({
         method: "DELETE",
-        url: "https://api.hundverketiskane.se/api/login"
+        url: "/api/login"
       });
       this.$store.dispatch("checkIfLoggedIn");
     },
@@ -270,7 +270,7 @@ export default {
       this.state.loading = true;
       await axios({
         method: "POST",
-        url: "https://api.hundverketiskane.se/api/login",
+        url: "/api/login",
         data: {
           email: this.form.email,
           password: this.form.password
