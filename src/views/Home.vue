@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <img class="sally-img" src="/images/sally.webp" alt="Hunden Sally" />
+    <img class="sally-img" src="/images/sally.jpg" alt="Hunden Sally" />
     <b-container class="wrapper">
       <b-row>
         <b-col cols="12" lg="8" class="articles">

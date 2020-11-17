@@ -77,7 +77,15 @@ export default {
       }
     }
   },
+  watch: {
+    urlparam: async function() {
+      await this.getDogData()
+    }
+  },
   computed: {
+    urlparam() {
+      return this.$route.params.dog
+    },
     loggedIn() {
       return this.$store.state.loggedIn;
     }
